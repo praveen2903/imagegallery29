@@ -4,6 +4,7 @@ import fetchDataDetails from '../utils/fetchDataDetails'
 import axios from "axios";
 import ImageCard from "./ImageCard";
 import { AiOutlineHome } from "react-icons/ai";
+import ScrollToTop from "react-scroll-to-top";
 
 function ImageCardDetails() {
     const [photo,setPhoto]=useState({});
@@ -35,6 +36,7 @@ function ImageCardDetails() {
 
   return (
     <div className="p-12">
+        <ScrollToTop smooth color='#f97316' width='35' height='25' />
         <div className="bg-blue-900 text-white py-10 px-2 lg:p-10 rounded-2xl">
             <Link to="/" className="text-3xl float-left my-4 text-red-500 hover:underline">
                 <AiOutlineHome/>

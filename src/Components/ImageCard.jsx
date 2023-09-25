@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import fetchData from '../utils/fetchdata'
 import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from "react-icons/ai";
 import Image from "./Image";
+import ScrollToTop from "react-scroll-to-top";
 
 
 function ImageCard({heading,id,setPhoto}) {
@@ -24,6 +25,7 @@ function ImageCard({heading,id,setPhoto}) {
 
   return (
     <div>
+        <ScrollToTop smooth color='#f97316' width='35' height='25' />
         <h1 className="font-semibold text-center my-6 mt-10 sm:my-14 text-3xl md:text-5xl hover:text-blue-800">{heading}</h1>
         <div className="grid gap-4 lg:grid-cols-3 md:grid-cols-2">
             {data.photos &&  data.photos.map(photo=>(
