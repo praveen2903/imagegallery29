@@ -36,7 +36,7 @@ function ImageCard({heading,id,setPhoto}) {
             <button onClick={handlePreviousClick} disabled={offset===0}  className="px-4 text-4xl hover:text-2xl mr-2 rounded-e-3xl text-[#4f46e5]">
                 <AiOutlineDoubleLeft/>
             </button>
-            <button onClick={handleNextClick} disabled={!data.photos || data.photos.length<20} className="px-4 mr-2 text-4#4f46e5xl hover:text-2xl rounded-e-3xl text-[#4f46e5]">
+            <button onClick={handleNextClick} disabled={!data.photos || data.photos.length<20} className="px-4 mr-2 text-4xl hover:text-2xl rounded-e-3xl text-[#4f46e5]">
                 <AiOutlineDoubleRight />
             </button>
         </div>
