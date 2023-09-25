@@ -8,7 +8,7 @@ export default function App() {
     <div>
       <Navbar/>
       <Routes>
-        <Route path="/" element={<ImageCards/>}/>
+        <Route path="/" element={<ImageCards heading=" My Collections"/>}/>
         <Route path="/detailPage/:id" element={<ImageCardDetails/>}/>
       </Routes>
     </div>
