@@ -20,6 +20,7 @@ function ImageCardDetails() {
             url:"https://source.unsplash.com/random/500x500",
             method:"GET",
             responseType:'blob'
+            // array buffer mutable blob immutable to data view
         })
         .then((response)=>{
             const url=window.URL.createObjectURL(new Blob([response.data],{ type: 'image/jpeg' }))
