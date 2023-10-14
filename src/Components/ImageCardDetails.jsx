@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom";
 import fetchDataDetails from '../utils/fetchDataDetails'
 import axios from "axios";
-import ImageCard from "./ImageCard";
 import { AiOutlineHome } from "react-icons/ai";
 import ScrollToTop from "react-scroll-to-top";
 
@@ -62,11 +61,6 @@ function ImageCardDetails() {
                 </div>
             )}
         </div>
-        <div className="my-20">
-            <h1 className="my-14 text-center text-5xl text-blue-800">Related Images</h1>
-            <ImageCard id={id} setPhoto={setPhoto}/>
-        </div>
-
     </div>
   )
 }

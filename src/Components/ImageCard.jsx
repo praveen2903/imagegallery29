@@ -3,7 +3,7 @@ import fetchData from '../utils/fetchdata'
 import Image from "./Image";
 import ScrollToTop from "react-scroll-to-top";
 import {GrLinkPrevious,GrLinkNext} from 'react-icons/gr'
-
+import NavbarDefault from "./NavbarDefault";
 
 function ImageCard({heading,id,setPhoto}) {
     const [data,setData]=useState([]);
@@ -25,6 +25,7 @@ function ImageCard({heading,id,setPhoto}) {
 
   return (
     <div>
+        <NavbarDefault/>
         <ScrollToTop smooth color='#f97316' width='35' height='25' />
         <h1 className="font-semibold text-center my-6 mt-8 sm:my-14 text-3xl md:text-5xl hover:text-blue-800">{heading}</h1>
         <div className="grid gap-4 lg:grid-cols-3 md:grid-cols-2">
