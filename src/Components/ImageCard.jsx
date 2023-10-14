@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import fetchData from '../utils/fetchdata'
-import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from "react-icons/ai";
 import Image from "./Image";
 import ScrollToTop from "react-scroll-to-top";
+import {GrLinkPrevious,GrLinkNext} from 'react-icons/gr'
 
 
 function ImageCard({heading,id,setPhoto}) {
@@ -32,12 +32,12 @@ function ImageCard({heading,id,setPhoto}) {
                 <Image key={photo.id} id={photo.id} url={photo.url} title={photo.title} author={photo.author} location={photo.location} category={photo.category}/>
             ))}
         </div>
-        <div className="fixed bottom-80 top-96 flex justify-between right-1 left-1">
-            <button onClick={handlePreviousClick} disabled={offset===0}  className="px-4 text-4xl hover:text-2xl mr-2 rounded-e-3xl text-[#4f46e5]">
-                <AiOutlineDoubleLeft/>
+        <div className="p-4 flex justify-center gap-20 cursor-pointer">
+            <button onClick={handlePreviousClick} disabled={offset===0}  className="bg-blue-700 p-4 text-4xl hover:text-2xl mr-2 rounded-full text-[#eab308]">
+                <GrLinkPrevious/>
             </button>
-            <button onClick={handleNextClick} disabled={!data.photos || data.photos.length<8} className="px-4 mr-2 text-4xl hover:text-2xl rounded-e-3xl text-[#4f46e5]">
-                <AiOutlineDoubleRight />
+            <button onClick={handleNextClick} disabled={!data.photos || data.photos.length<8} className="bg-blue-700 p-4 mr-2 text-4xl hover:text-2xl rounded-full text-[#eab308]">
+                <GrLinkNext/>
             </button>
         </div>
     </div>
