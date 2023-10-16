@@ -28,7 +28,7 @@ function ImageCard({heading,id,setPhoto}) {
         <NavbarDefault/>
         <ScrollToTop smooth color='#f97316' width='35' height='25' />
         <h1 className="font-semibold text-center my-6 mt-8 sm:my-14 text-3xl md:text-5xl hover:text-blue-800">{heading}</h1>
-        <div className="grid gap-4 lg:grid-cols-3 md:grid-cols-2">
+        <div className="grid gap-4 lg:grid-cols-3 md:grid-cols-2 mx-8 cursor-pointer">
             {data.photos &&  data.photos.map(photo=>(
                 <Image key={photo.id} id={photo.id} url={photo.url} title={photo.title} author={photo.author} location={photo.location} category={photo.category}/>
             ))}

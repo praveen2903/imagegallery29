@@ -24,7 +24,7 @@ function NavbarDefault() {
 
     const handleToggle=(e)=>{
         if(e.target.checked){
-            setTheme("dark");
+            setTheme("black");
         }
         else{
             setTheme("light");
@@ -80,8 +80,8 @@ function NavbarDefault() {
   );
  
   return (
-    <Navbar className="mx-auto max-w-screen-xl py-2 px-4 lg:px-8 lg:py-4 bg-[#6d28d9] my-3">
-      <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
+    <Navbar className="mx-auto max-w-screen-xl rounded-3xl py-2 px-4 lg:px-8 lg:py-4 bg-gradient-to-r from-[#1d4ed8] to-[#4c1d95] my-3">
+      <div className="container space-y-5 mx-auto flex items-center justify-between text-blue-gray-900">
         <Typography
           as="a"
           href="#"
@@ -141,7 +141,7 @@ function NavbarDefault() {
         </IconButton>
       </div>
       <MobileNav open={openNav}>
-        <div className="container mx-auto">
+        <div className="container mx-auto w-12">
           {navList}
           <div>
              <label className="swap swap-rotate">
