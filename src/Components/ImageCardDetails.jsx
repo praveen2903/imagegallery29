@@ -37,7 +37,7 @@ function ImageCardDetails() {
   return (
     <div className="p-12">
         <ScrollToTop smooth color='#f97316' width='35' height='25' />
-        <div className="bg-blue-900 text-white py-10 px-2 lg:p-10 rounded-2xl">
+        <div className="bg-gradient-to-r from-[#3c7fd0] to-[#3730a3] text-white py-10 px-2 lg:p-10 rounded-2xl">
             <Link to="/" className="text-3xl float-left my-4 text-red-500 hover:underline">
                 <AiOutlineHome/>
             </Link>
