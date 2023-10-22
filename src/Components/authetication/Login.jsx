@@ -140,7 +140,7 @@ export default function Login() {
               <p className="text-center text-white">or continue with</p>
               <br/>
               <div className="flex gap-10 items-center justify-center mb-5">
-              {googlevalue ? (
+              {!googlevalue ? (
                   <ImageCard />
                 ) : (
                   <button className="cursor-pointer" onClick={handleGoogleLogin}>
@@ -148,7 +148,7 @@ export default function Login() {
                   </button>
                 )}
 
-                {githubvalue ? (
+                {!githubvalue ? (
                   <ImageCard />
                 ) : (
                   <button onClick={handleGithubLogin} className="cursor-pointer">
@@ -156,7 +156,7 @@ export default function Login() {
                   </button>
                 )}
                   
-                {facebookvalue ? (
+                {!facebookvalue ? (
                   <ImageCard />
                 ) : (
                   <button onClick={handleFacebookLogin} className="cursor-pointer">
