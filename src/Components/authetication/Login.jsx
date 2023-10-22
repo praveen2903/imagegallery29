@@ -7,6 +7,7 @@ import phone from '../../assets/telephone.png';
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleprovider, githubprovider, facebookprovider } from "../../firebase/config";
 import { useState, useEffect } from "react";
+import ImageCard from '../homesection/ImageCard'
 
 export default function Login() {
   const [err, setErr] = useState(false);
@@ -139,15 +140,30 @@ export default function Login() {
               <p className="text-center text-white">or continue with</p>
               <br/>
               <div className="flex gap-10 items-center justify-center mb-5">
-                  <button onClick={handleGoogleLogin} className="cursor-pointer">
-                    <img src={google} className="rounded h-[32px] w-[32px]" alt="G"/>
+              {!googlevalue ? (
+                  <ImageCard />
+                ) : (
+                  <button className="cursor-pointer" onClick={handleGoogleLogin}>
+                    <img src={google} className="rounded h-[32px] w-[32px]" alt="G" />
                   </button>
+                )}
+
+                {!githubvalue ? (
+                  <ImageCard />
+                ) : (
                   <button onClick={handleGithubLogin} className="cursor-pointer">
                     <img src={github} className="rounded h-[32px] w-[32px]" alt="G"/>
                   </button>
+                )}
+                  
+                {!facebookvalue ? (
+                  <ImageCard />
+                ) : (
                   <button onClick={handleFacebookLogin} className="cursor-pointer">
                     <img src={facebook} className="rounded h-[32px] w-[32px]" alt="G"/>
                   </button>
+                )}
+                  
                 <Link to="/phonelogin" className="cursor-pointer">
                   <img src={phone} className="rounded h-[32px] w-[32px]" alt="G"/>
                 </Link>
