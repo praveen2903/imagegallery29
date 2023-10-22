@@ -26,11 +26,7 @@ export default function Login() {
       alert(`logged in through google with ${data.user.email}`)
     })
     .catch((err)=>{
-      if (err.code === "auth/popup-closed-by-user") {
-        console.log("Authentication popup was closed by the user.");
-      } else {
-        console.error("Authentication error:", err);
-      }
+      console.error("Google Authentication error:", err);
     })
   }
 
@@ -42,11 +38,7 @@ export default function Login() {
       alert(`logged in through github with ${data.user.email}`)
     })
     .catch((err)=>{
-      if (err.code === "auth/popup-closed-by-user") {
-        console.log("Authentication popup was closed by the user.");
-      } else {
-        console.error("Authentication error:", err);
-      }
+      console.error("Google Authentication error:", err);
     })
   }
   
@@ -58,11 +50,7 @@ export default function Login() {
       alert(`logged in through facebook with ${data.user.email}`)
     })
     .catch((err)=>{
-      if (err.code === "auth/popup-closed-by-user") {
-        console.log("Authentication popup was closed by the user.");
-      } else {
-        console.error("Authentication error:", err);
-      }
+      console.error("Google Authentication error:", err);
     })
   }
 
@@ -141,7 +129,7 @@ export default function Login() {
               </div>
             </form>
             <div className="">
-              <p className="text-center text-white">or continue with</p>
+              <p className="text-center text-white mb-5">or continue with</p>
               <div className="flex gap-10 items-center justify-center mb-5">
                 <div className="flex gap-10 items-center justify-center mb-5">
                   <button id={googlevalue} className="cursor-pointer" onClick={handleGoogleLogin}>
