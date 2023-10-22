@@ -7,7 +7,7 @@ import phone from '../../assets/telephone.png';
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleprovider, githubprovider, facebookprovider } from "../../firebase/config";
 import { useState, useEffect } from "react";
-import ImageCard from '../homesection/ImageCard'
+
 
 export default function Login() {
   const [err, setErr] = useState(false);
@@ -23,6 +23,7 @@ export default function Login() {
       setGoogleValue(data.user.email);
       localStorage.setItem("email",data.user.email);
       navigate("/home")
+      alert(`logged in through google with ${data.user.email}`)
     })
     .catch((err)=>{
       if (err.code === "auth/popup-closed-by-user") {
@@ -38,6 +39,7 @@ export default function Login() {
       setGithubValue(data.user.email);
       localStorage.setItem("email",data.user.email);
       navigate("/home")
+      alert(`logged in through github with ${data.user.email}`)
     })
     .catch((err)=>{
       if (err.code === "auth/popup-closed-by-user") {
@@ -53,6 +55,7 @@ export default function Login() {
       setFacebookValue(data.user.email);
       localStorage.setItem("email",data.user.email);
       navigate("/home")
+      alert(`logged in through facebook with ${data.user.email}`)
     })
     .catch((err)=>{
       if (err.code === "auth/popup-closed-by-user") {
@@ -78,6 +81,7 @@ export default function Login() {
     try {
       await signInWithEmailAndPassword(auth, userEmail, userPassword);
       navigate("/home");
+      alert(`logged with ${email}`)
     } catch (error) {
       setErr(true);
       setEmail('');
@@ -138,35 +142,24 @@ export default function Login() {
             </form>
             <div className="">
               <p className="text-center text-white">or continue with</p>
-              <br/>
               <div className="flex gap-10 items-center justify-center mb-5">
-              {!googlevalue ? (
-                  <ImageCard />
-                ) : (
-                  <button className="cursor-pointer" onClick={handleGoogleLogin}>
-                    <img src={google} className="rounded h-[32px] w-[32px]" alt="G" />
+                <div className="flex gap-10 items-center justify-center mb-5">
+                  <button id={googlevalue} className="cursor-pointer" onClick={handleGoogleLogin}>
+                    <img src={google} className="rounded h-[32px] w-[32px]" alt="Google" />
                   </button>
-                )}
 
-                {!githubvalue ? (
-                  <ImageCard />
-                ) : (
-                  <button onClick={handleGithubLogin} className="cursor-pointer">
-                    <img src={github} className="rounded h-[32px] w-[32px]" alt="G"/>
+                  <button id={githubvalue} className="cursor-pointer" onClick={handleGithubLogin}>
+                    <img src={github} className="rounded h-[32px] w-[32px]" alt="GitHub" />
                   </button>
-                )}
-                  
-                {!facebookvalue ? (
-                  <ImageCard />
-                ) : (
-                  <button onClick={handleFacebookLogin} className="cursor-pointer">
-                    <img src={facebook} className="rounded h-[32px] w-[32px]" alt="G"/>
+
+                  <button id={facebookvalue} className="cursor-pointer" onClick={handleFacebookLogin}>
+                    <img src={facebook} className="rounded h-[32px] w-[32px]" alt="Facebook" />
                   </button>
-                )}
-                  
-                <Link to="/phonelogin" className="cursor-pointer">
-                  <img src={phone} className="rounded h-[32px] w-[32px]" alt="G"/>
-                </Link>
+
+                  <Link to="/phonelogin" className="cursor-pointer">
+                    <img src={phone} className="rounded h-[32px] w-[32px]" alt="G"/>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

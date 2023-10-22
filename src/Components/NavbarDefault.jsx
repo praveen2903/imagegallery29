@@ -52,7 +52,7 @@ function NavbarDefault() {
                 <img src={currentUser?.photoURL || photo} alt='userphoto' />
               </div>
             </label>
-            <ul tabIndex={0} className="mt-3 z-[1] p-4 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+            <ul tabIndex={0} className="mt-2 gap-3 z-[1] p-4 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
               <li>
                 <p className="justify-between">
                   {currentUser?.displayName || "User"}

@@ -41,7 +41,7 @@ export default function Register() {
 
             await setDoc(doc(db, "userPhotos", res.user.uid), {});
             navigate("/home");
-
+            alert(`Welcome to Imagegallery ${displayName},   ${email}`)
           } catch (err) {
             console.log(err);
             setErr(true);
