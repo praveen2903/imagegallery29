@@ -139,12 +139,11 @@ export default function Login() {
               <p className="text-center text-white">or continue with</p>
               <br/>
               <div className="flex gap-10 items-center justify-center mb-5">
-                {googlevalue? (
+                {googlevalue && (
                   <button onClick={handleGoogleLogin} className="cursor-pointer">
                     <img src={google} className="rounded h-[32px] w-[32px]" alt="G"/>
                   </button>
-                ):
-                  null
+                  )
                 }
                 {githubvalue? (
                   <button onClick={handleGithubLogin} className="cursor-pointer">
