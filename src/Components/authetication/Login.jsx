@@ -139,27 +139,15 @@ export default function Login() {
               <p className="text-center text-white">or continue with</p>
               <br/>
               <div className="flex gap-10 items-center justify-center mb-5">
-                {googlevalue && (
                   <button onClick={handleGoogleLogin} className="cursor-pointer">
                     <img src={google} className="rounded h-[32px] w-[32px]" alt="G"/>
                   </button>
-                  )
-                }
-                {githubvalue? (
                   <button onClick={handleGithubLogin} className="cursor-pointer">
                     <img src={github} className="rounded h-[32px] w-[32px]" alt="G"/>
                   </button>
-                ):
-                  null
-                }
-                {facebookvalue? (
                   <button onClick={handleFacebookLogin} className="cursor-pointer">
                     <img src={facebook} className="rounded h-[32px] w-[32px]" alt="G"/>
                   </button>
-                ):
-                  null
-                }
-              
                 <Link to="/phonelogin" className="cursor-pointer">
                   <img src={phone} className="rounded h-[32px] w-[32px]" alt="G"/>
                 </Link>
