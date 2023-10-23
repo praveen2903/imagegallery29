@@ -77,6 +77,10 @@ export default function Login() {
     }
   };
 
+  const handleResetPassword=()=>{
+    navigate("/reset")
+  }
+
   return (
     <div className="hero min-h-screen bg-base-200" style={{ backgroundImage: `url(${img})` }}>
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -116,7 +120,7 @@ export default function Login() {
                   required
                 />
                 <label className="label mt-2">
-                  <a href="/" className="label-text-alt link link-hover hover:text-blue-600 text-black">Forgot password?</a>
+                  <p onClick={handleResetPassword} className="label-text-alt link link-hover hover:text-blue-600 text-black">Forgot password?</p>
                 </label>
                 <p className="m-2 text-black">Don't have an account?{" "}
                   <Link to="/register" className="font-medium text-blue-900">

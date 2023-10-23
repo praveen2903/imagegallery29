@@ -8,6 +8,7 @@ import Register from "./Components/authetication/Register";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import PhoneLogin from "./Components/authetication/PhoneLogin";
+import ResetPassword from "./Components/authetication/ResetPassword";
 
 export default function App() {
   const { currentUser } = useContext(AuthContext);
@@ -19,7 +20,7 @@ export default function App() {
 
     return children
   };
-  console.log(currentUser)
+  // console.log(currentUser)
 
   return (
     <div>
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="/addedphotos" element={<ProtectedRoute><ImagesAdded/></ProtectedRoute>} />
         <Route path="/register" element={<Register/>} />
         <Route path="/phonelogin" element={<PhoneLogin/>} />
+        <Route path="/reset" element={<ResetPassword/>} />
       </Routes>
     </div>
       

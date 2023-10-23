@@ -31,13 +31,13 @@ const PhoneLogin = () => {
         }
         try{
             const response=await setUpRecaptcha(number);
-            console.log(response)
+            // console.log(response)
             setConfirmObj(response)
             setFlag(true)
         }catch(err){
             setErr(true)
         }
-        console.log(number)
+        // console.log(number)
     }
 
     const verifyOtp=async (e)=>{
@@ -81,7 +81,7 @@ const PhoneLogin = () => {
                 </form>
                 <form onClick={verifyOtp} className="card-body" style={{display: flag? "block":"none"}}>
                     <div>
-                        {!err && <span className='text-red-700'>Enter the correct code...</span>}                   
+                        {!err && <span className='text-red-700'>enter correct code ...</span>}                   
                     </div>
                     <div className="form-control">
                         <label className="label">
