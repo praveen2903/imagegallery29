@@ -14,13 +14,13 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const [googlevalue,setGoogleValue]=useState('');
-  const [githubvalue,setGithubValue]=useState('');
-  const [facebookvalue,setFacebookValue]=useState("")
+  const [googlevalue,setGoogleValue]=useState(false);
+  const [githubvalue,setGithubValue]=useState(false);
+  const [facebookvalue,setFacebookValue]=useState(false)
 
   const handleGoogleLogin=()=>{
     signInWithPopup(auth,googleprovider).then((data)=>{
-      setGoogleValue(data.user.email);
+      setGoogleValue(true);
       localStorage.setItem("email",data.user.email);
       navigate("/home")
       alert(`logged in through google with ${data.user.email}`)
@@ -32,7 +32,7 @@ export default function Login() {
 
   const handleGithubLogin=()=>{
     signInWithPopup(auth,githubprovider).then((data)=>{
-      setGithubValue(data.user.email);
+      setGithubValue(true);
       localStorage.setItem("email",data.user.email);
       navigate("/home")
       alert(`logged in through github with ${data.user.email}`)
@@ -44,7 +44,7 @@ export default function Login() {
   
   const handleFacebookLogin=()=>{
     signInWithPopup(auth,facebookprovider).then((data)=>{
-      setFacebookValue(data.user.email);
+      setFacebookValue(true);
       localStorage.setItem("email",data.user.email);
       navigate("/home")
       alert(`logged in through facebook with ${data.user.email}`)
