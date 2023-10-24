@@ -5,7 +5,7 @@ import logo from '../assets/logo.jpg'
 import {MdAddCircleOutline} from 'react-icons/md'
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/config";
-import photo from '../assets/photo.jpg'
+import photo from '../assets/iron.jpeg'
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
  

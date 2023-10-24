@@ -6,7 +6,8 @@ import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import { useState } from 'react'
 import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth'
-import {auth} from "../../firebase/config"
+import {auth,db} from "../../firebase/config"
+import { doc, setDoc } from 'firebase/firestore'
 
 const PhoneLogin = () => {
     const [number,setNumber] = useState("")
@@ -31,13 +32,11 @@ const PhoneLogin = () => {
         }
         try{
             const response=await setUpRecaptcha(number);
-            // console.log(response)
             setConfirmObj(response)
             setFlag(true)
         }catch(err){
             setErr(true)
         }
-        // console.log(number)
     }
 
     const verifyOtp=async (e)=>{
@@ -48,6 +47,12 @@ const PhoneLogin = () => {
         try{
             setErr(false);
             await confirmobj.confirm(otp)
+            await setDoc(doc(db, "users", auth.currentUser.uid), {
+                uid: auth.currentUser.uid,
+                PhoneNumber: number,
+              });
+            await setDoc(doc(db, "userPhotos", auth.currentUser.uid), {});
+            
             navigate("/home")
         }catch(err){
             setErr(true)

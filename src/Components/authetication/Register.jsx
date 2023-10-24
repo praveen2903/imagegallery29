@@ -97,7 +97,7 @@ export default function Register() {
             <button disabled={loading} className="btn btn-primary rounded-3xl bg-blue-500 hover:bg-blue-700 text-white uppercase">Register</button>
           </div>
           <p className="text-blue-800">{loading && "Uploading and compressing the image please wait..."}</p>
-          <p className="text-red-600">{err && <span>Something went wrong</span>}</p>
+          <p className="text-red-600">{err && <span>Email Already exists...</span>}</p>
         </form>
       </div>
     </div>

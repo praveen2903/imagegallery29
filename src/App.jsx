@@ -17,7 +17,6 @@ export default function App() {
     if (!currentUser) {
       return <Navigate to="/" />;
     }
-
     return children
   };
   // console.log(currentUser)
