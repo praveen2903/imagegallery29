@@ -19,38 +19,45 @@ export default function Register() {
     const password = e.target[2].value;
     const file = e.target[3].files[0];
 
-    try {
-      const res = await createUserWithEmailAndPassword(auth, email, password);
-      const date = new Date().getTime();
-      const storageRef = ref(storage, `${displayName + date}`);
+    const allowedTypes = ['image/png', 'image/jpg', 'image/jpeg'];
+    if (file && allowedTypes.includes(file.type)) {
+      try {
+        const res = await createUserWithEmailAndPassword(auth, email, password);
+        const date = new Date().getTime();
+        const storageRef = ref(storage, `${displayName + date}`);
 
-      await uploadBytesResumable(storageRef, file).then(() => {
-        getDownloadURL(storageRef).then(async (downloadURL) => {
-          try {
-            await updateProfile(res.user, {
-              displayName,
-              photoURL: downloadURL,
-            });
-            //create user on firestore
-            await setDoc(doc(db, "users", res.user.uid), {
-              uid: res.user.uid,
-              displayName,
-              email,
-              photoURL: downloadURL,
-            });
+        await uploadBytesResumable(storageRef, file).then(() => {
+          getDownloadURL(storageRef).then(async (downloadURL) => {
+            try {
+              await updateProfile(res.user, {
+                displayName,
+                photoURL: downloadURL,
+              });
+              
+              await setDoc(doc(db, 'users', res.user.uid), {
+                uid: res.user.uid,
+                displayName,
+                email,
+                photoURL: downloadURL,
+              });
 
-            await setDoc(doc(db, "userPhotos", res.user.uid), {});
-            navigate("/home");
-            alert(`Welcome to Imagegallery ${displayName},   ${email}`)
-          } catch (err) {
-            console.log(err);
-            setErr(true);
-            setLoading(false);
-          }
+              await setDoc(doc(db, 'userPhotos', res.user.uid), {});
+              navigate('/home');
+              alert(`Welcome to Imagegallery ${displayName}, ${email}`);
+            } catch (err) {
+              console.log(err);
+              setErr(true);
+              setLoading(false);
+            }
+          });
         });
-      });
-    } catch (err) {
-      setErr(true);
+      } catch (err) {
+        setErr(true);
+        setLoading(false);
+      }
+    } 
+    else {
+      alert('Invalid file type. Please select a valid image file (PNG, JPG, JPEG).');
       setLoading(false);
     }
   };

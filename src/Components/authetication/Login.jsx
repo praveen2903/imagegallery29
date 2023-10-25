@@ -105,12 +105,6 @@ export default function Login() {
   }
 
 
-  useEffect(()=>{
-    setGoogleValue(localStorage.getItem('email'))
-    setGithubValue(localStorage.getItem("email"))
-    setFacebookValue(localStorage.getItem("email"))
-  },[])
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userEmail = email;
