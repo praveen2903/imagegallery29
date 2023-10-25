@@ -10,6 +10,7 @@ export default function Register() {
   const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [file,setFile]=useState(null)
 
   const handleSubmit = async (e) => {
     setLoading(true);
@@ -17,7 +18,6 @@ export default function Register() {
     const displayName = e.target[0].value;
     const email = e.target[1].value;
     const password = e.target[2].value;
-    const file = e.target[3].files[0];
 
     const allowedTypes = ['image/png', 'image/jpg', 'image/jpeg'];
     if (file && allowedTypes.includes(file.type)) {
@@ -93,7 +93,7 @@ export default function Register() {
             <label className="label">
                 <span className="label-text text-black">Add your Avatar</span>
             </label>
-            <input type="file" id="file" className="text-black" required/>
+            <input type="file" accept="image/*" id="profile-photo" className="file-input file-input-bordered file-input-sm w-full max-w-xs mt-2" onChange={(e) => setFile(e.target.files[0])} />
           </div>
             <p className="mt-2 text-black">Already have an account?{" "}
               <Link to="/" className="font-medium text-blue-700">
