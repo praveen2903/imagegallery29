@@ -23,6 +23,10 @@ function ImageCard({ heading, id, setPhoto }) {
   const handlers = useSwipeable({
     onSwipedLeft: handleNextClick,
     onSwipedRight: handlePreviousClick,
+    swipeDuration: 1000,
+    delta: 10,
+    trackMouse: true,
+    trackTouch: true,
   });
 
   useEffect(() => {
@@ -45,7 +49,7 @@ function ImageCard({ heading, id, setPhoto }) {
         <button onClick={handlePreviousClick} disabled={offset === 0} className="bg-blue-700 p-4 text-4xl hover:text-2xl mr-2 rounded-full text-[#eab308]">
           <GrLinkPrevious />
         </button>
-        <button onClick={handleNextClick} disabled={!data.photos || data.photos.length < 8} className="bg-blue-700 p-4 mr-2 text-4xl hover:text-2xl rounded-full text-[#eab308]">
+        <button onClick={handleNextClick} disabled={!data.photos || data.photos.length <     8} className="bg-blue-700 p-4 mr-2 text-4xl hover:text-2xl rounded-full text-[#eab308]">
           <GrLinkNext />
         </button>
       </div>
