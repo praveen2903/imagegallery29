@@ -24,8 +24,7 @@ export default function Register() {
       try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
         const date = new Date().getTime();
-        const storageRef = ref(storage, `${displayName + date}`);
-
+        const storageRef = ref(storage, `profilephotos/${displayName + date}`);
         await uploadBytesResumable(storageRef, file).then(() => {
           getDownloadURL(storageRef).then(async (downloadURL) => {
             try {
@@ -41,7 +40,6 @@ export default function Register() {
                 photoURL: downloadURL,
               });
 
-              await setDoc(doc(db, 'userPhotos', res.user.uid), {});
               navigate('/home');
               alert(`Welcome to Imagegallery ${displayName}, ${email}`);
             } catch (err) {

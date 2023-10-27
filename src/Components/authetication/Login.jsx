@@ -53,7 +53,6 @@ export default function Login() {
         googlevalue,
       });
 
-      await setDoc(doc(db, "userPhotos", data.user.uid), {});
       navigate("/home")
       alert(`logged in through google with ${data.user.email}`)
     })
@@ -77,7 +76,6 @@ export default function Login() {
         githubvalue,
       });
 
-      await setDoc(doc(db, "userPhotos", data.user.uid), {});
       navigate("/home")
       alert(`logged in through github with ${data.user.email}`)
     })
@@ -95,7 +93,7 @@ export default function Login() {
         uid: data.user.uid,
         facebookvalue,
       });
-      await setDoc(doc(db, "userPhotos", data.user.uid), {});
+
       navigate("/home")
       alert(`logged in through facebook with ${data.user.email}`)
     })

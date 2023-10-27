@@ -58,7 +58,6 @@ const PhoneLogin = () => {
           phoneNumber: number,
           displayName: name,
         });
-        await setDoc(doc(db, 'userPhotos', auth.currentUser.uid), {});
         navigate('/home');
 
     } catch (err) {
