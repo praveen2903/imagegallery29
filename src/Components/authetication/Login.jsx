@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import img from '../../assets/loginpage.jpg';
 import google from '../../assets/google.png';
 import github from '../../assets/github.png';
-import facebook from '../../assets/facebook.avif'
+import facebook from '../../assets/facebook.png'
 import phone from '../../assets/telephone.png';
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, db , googleprovider, githubprovider, facebookprovider } from "../../firebase/config";

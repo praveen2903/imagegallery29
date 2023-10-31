@@ -11,12 +11,12 @@ function ImageCard({ heading, id, setPhoto }) {
   const [offset, setOffset] = useState(0);
 
   const handleNextClick = () => {
-    setOffset(offset + 8);
+    setOffset(offset + 10);
   }
 
   const handlePreviousClick = () => {
-    if (offset >= 8) {
-      setOffset(offset - 8);
+    if (offset >= 10) {
+      setOffset(offset - 10);
     }
   };
 
@@ -49,7 +49,7 @@ function ImageCard({ heading, id, setPhoto }) {
         <button onClick={handlePreviousClick} disabled={offset === 0} className="bg-blue-700 p-4 text-4xl hover:text-2xl mr-2 rounded-full text-[#eab308]">
           <GrLinkPrevious />
         </button>
-        <button onClick={handleNextClick} disabled={!data.photos || data.photos.length <     8} className="bg-blue-700 p-4 mr-2 text-4xl hover:text-2xl rounded-full text-[#eab308]">
+        <button onClick={handleNextClick} disabled={!data.photos || data.photos.length <10} className="bg-blue-700 p-4 mr-2 text-4xl hover:text-2xl rounded-full text-[#eab308]">
           <GrLinkNext />
         </button>
       </div>

@@ -4,7 +4,14 @@ import { useContext } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import { db, storage } from '../../firebase/config'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
-import { doc, setDoc } from 'firebase/firestore'
+import { addDoc, collection } from 'firebase/firestore'
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Typography,
+  Button,
+} from "@material-tailwind/react";
 
 function AddImage() {
   const [file,setFile]=useState(null)
@@ -16,12 +23,14 @@ function AddImage() {
   const [err,setErr]=useState(false)
   const [url,setUrl]=useState('')
   const { currentUser } = useContext(AuthContext);
+  const [imagetitle,setImageTitle]=useState('')
+  const [imagedescription,setImageDescription]=useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setUpload(true)
     if (file) {
-      const fileId = currentUser.uid;
+      const fileId = currentUser?.uid;
       setFileformat(file.type.split('/')[1]);
       const storageRef = ref(storage, `image/${title}.${fileformat}`);
       const uploadTask = uploadBytesResumable(storageRef, file);
@@ -32,9 +41,21 @@ function AddImage() {
       },(err)=>{
         setErr(err)
       },()=>{
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
+        getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL)=>{
           setUrl(downloadURL)
+          setImageDescription(description)
+          setImageTitle(title)
           setProgress(100)
+
+          await addDoc(collection(db,"userPhotos"),{
+            uid:fileId,
+            imageUrL:downloadURL,
+            createdAt:new Date(),
+            email:currentUser?.email,
+            name:currentUser?.displayName,
+            title:title,
+            description,
+          })
         })
       });
 
@@ -64,21 +85,57 @@ function AddImage() {
           <progress className="progress progress-error w-56" value={progress} max="100"></progress>
         )}        
         {upload && progress === 100  &&
-          <div className="card card-compact w-96 shadow-xl ml-10 bg-blue-400 m-6">
-          <figure>
-            <img src={url} alt="Shoes" className='h-[400px] w-[400px] p-5'/>
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">{title}</h2>
-            <p>{description}{fileformat}</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">{currentUser?.displayName}</button>
-            </div>
-          </div>
-        </div>
+          <Card className="w-full max-w-[48rem] flex-row p-4 bg-blue-400 mt">
+          <CardHeader
+            shadow={true}
+            floated={true}
+            className="m-0 w-2/5 shrink-0 rounded-r-none"
+          >
+            <img
+              src={url}
+              alt="/not found"
+              className="object-cover h-[400px] w-[400px]"
+            />
+          </CardHeader>
+          <CardBody className="px-4 gap-10 w-3/5">
+            <Typography variant="h6" color="white" className="mb-4 uppercase flex gap-10">
+              <span>User Name-- </span>{currentUser?.displayName}
+            </Typography>
+            <Typography variant="h6" color="white" className="mb-4 flex gap-10">
+              <span className='uppercase'>User email-- </span>{currentUser?.email}
+            </Typography>
+
+            <Typography variant="h4" color="black" className="mb-2 uppercase mt-10">
+              <span>Image Title: </span>{imagetitle}
+            </Typography>
+            <Typography color="black" className="mb-8 font-normal mt-10">
+              {imagedescription}
+            </Typography>
+            <a href="/addedphotos" className="inline-block">
+              <Button variant="text" className="flex items-center gap-2 absolute bottom-10 right-10">
+                Learn More
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  className="h-4 w-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                  />
+                </svg>
+              </Button>
+            </a>
+          </CardBody>
+        </Card> 
         }
+        {err && <span>some thing went wrong</span>}
+        </div>
       </div>
-    </div>
     
   )
 }
