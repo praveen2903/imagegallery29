@@ -28,7 +28,7 @@ export default function App() {
         <Route path="/detailPage/:id" element={<ProtectedRoute><ImageCardDetails/></ProtectedRoute>}/>
         <Route path="/upload" element={<ProtectedRoute><AddImage/></ProtectedRoute>} />
         <Route path="/" element={<Login/>} />
-        <Route path="/addedphotos" collectionName={"userPhotos"} element={<ProtectedRoute><ImagesAdded/></ProtectedRoute>} />
+        <Route path="/addedphotos" element={<ProtectedRoute><ImagesAdded/></ProtectedRoute>} />
         <Route path="/register" element={<Register/>} />
         <Route path="/phonelogin" element={<PhoneLogin/>} />
         <Route path="/reset" element={<ResetPassword/>} />
