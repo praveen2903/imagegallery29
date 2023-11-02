@@ -47,10 +47,13 @@ export default function Login() {
     signInWithPopup(auth,googleprovider).then(async (data)=>{
       setGoogleValue(data.user.email);
       localStorage.setItem("email",data.user.email);
+      // console.log(data.user)
 
       await setDoc(doc(db, "users", data.user.uid), {
         uid: data.user.uid,
         googlevalue,
+        photoURL:data.user.photoURL,
+        displayName:data.user.displayName,
       });
 
       navigate("/home")
@@ -74,6 +77,8 @@ export default function Login() {
       await setDoc(doc(db, "users", data.user.uid), {
         uid: data.user.uid,
         githubvalue,
+        photoURL:data.user.photoURL,
+        displayName:data.user.displayName,
       });
 
       navigate("/home")
@@ -92,6 +97,8 @@ export default function Login() {
       await setDoc(doc(db, "users", data.user.uid), {
         uid: data.user.uid,
         facebookvalue,
+        photoURL:data.user.photoURL,
+        displayName:data.user.displayName,
       });
 
       navigate("/home")

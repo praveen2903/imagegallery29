@@ -42,8 +42,6 @@ const ImagesAdded = () => {
     };
   }, []);
 
-  // console.log(images[0].imageUrL)
-
   return (
     <div>
       <NavbarDefault/>
