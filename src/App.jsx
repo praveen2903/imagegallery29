@@ -9,6 +9,7 @@ import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import PhoneLogin from "./Components/authetication/PhoneLogin";
 import ResetPassword from "./Components/authetication/ResetPassword";
+import About from "./Components/homesection/About";
 
 export default function App() {
   const { currentUser } = useContext(AuthContext);
@@ -28,6 +29,7 @@ export default function App() {
         <Route path="/detailPage/:id" element={<ProtectedRoute><ImageCardDetails/></ProtectedRoute>}/>
         <Route path="/upload" element={<ProtectedRoute><AddImage/></ProtectedRoute>} />
         <Route path="/" element={<Login/>} />
+        <Route path="/about" element={<ProtectedRoute><About/></ProtectedRoute>} />
         <Route path="/addedphotos" element={<ProtectedRoute><ImagesAdded/></ProtectedRoute>} />
         <Route path="/register" element={<Register/>} />
         <Route path="/phonelogin" element={<PhoneLogin/>} />

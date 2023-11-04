@@ -12,6 +12,7 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
+import photo from '../../assets/photo.jpg'
 
 function AddImage() {
   const [file,setFile]=useState(null)
@@ -51,10 +52,12 @@ function AddImage() {
             uid:fileId,
             imageUrL:downloadURL,
             createdAt:new Date(),
-            email:currentUser?.email,
+            contact:currentUser?.email || currentUser?.phoneNumber,
             name:currentUser?.displayName,
             title:title,
             description,
+            username:currentUser?.displayName,
+            userphoto:currentUser?.photoURL||photo,
           })
         })
       });

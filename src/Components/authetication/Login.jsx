@@ -184,7 +184,7 @@ export default function Login() {
               </div>
             </form>
             <div className="">
-              <p className="text-center text-white mb-5">or continue with</p>
+              <p className="text-center text-white text-[18px] mb-5">or continue with</p>
               <div className="flex gap-10 items-center justify-center mb-5">
                 <div className="flex gap-10 items-center justify-center mb-5">
                   <Link to="/phonelogin" className="cursor-pointer">
@@ -196,7 +196,7 @@ export default function Login() {
                   </button>
 
                   <button id={facebookvalue} className="cursor-pointer" onClick={handleFacebookLogin}>
-                    <img src={facebook} className="rounded h-[32px] w-[32px]" alt="Facebook" />
+                    <img src={facebook} className="rounded h-[45px] w-[40px]" alt="Facebook" />
                   </button>
 
                   <button id={githubvalue} className="cursor-pointer" onClick={handleGithubLogin}>
