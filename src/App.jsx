@@ -35,7 +35,7 @@ export default function App() {
         <Route path="/register" element={<Register/>} />
         <Route path="/phonelogin" element={<PhoneLogin/>} />
         <Route path="/reset" element={<ResetPassword/>} />
-        <Route path='/verification' element={<VerifyingEmail/>}/>
+        <Route path='/verifypage' element={<VerifyingEmail/>}/>
       </Routes>
     </div>
       

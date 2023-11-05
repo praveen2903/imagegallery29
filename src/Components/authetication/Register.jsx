@@ -24,32 +24,33 @@ export default function Register() {
       try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
         await sendEmailVerification(res.user)
-        const date = new Date().getTime();
-        const storageRef = ref(storage, `profilephotos/${displayName + date}`);
-        await uploadBytesResumable(storageRef, file).then(() => {
-          getDownloadURL(storageRef).then(async (downloadURL) => {
-            try {
-              await updateProfile(res.user, {
-                displayName,
-                photoURL: downloadURL,
-              });
-              
-              await setDoc(doc(db, 'users', res.user.uid), {
-                uid: res.user.uid,
-                displayName,
-                email,
-                photoURL: downloadURL,
-              });
+          const date = new Date().getTime();
+          const storageRef = ref(storage, `profilephotos/${displayName + date}`);
+          await uploadBytesResumable(storageRef, file).then(() => {
+            getDownloadURL(storageRef).then(async (downloadURL) => {
+              try {
+                await updateProfile(res.user, {
+                  displayName,
+                  photoURL: downloadURL,
+                });
+                
+                await setDoc(doc(db, 'users', res.user.uid), {
+                  uid: res.user.uid,
+                  displayName,
+                  email,
+                  photoURL: downloadURL,
+                });
 
-              navigate('/home');
-              alert(`Welcome to Imagegallery ${displayName}, ${email}`);
-            } catch (err) {
-              console.log(err);
-              setErr(true);
-              setLoading(false);
-            }
+                navigate('/verifypage');
+                alert(`verification link sent to mail: ${email}`);
+              } catch (err) {
+                console.log(err);
+                setErr(true);
+                setLoading(false);
+              }
+            });
           });
-        });
+
       } catch (err) {
         setErr(true);
         setLoading(false);
