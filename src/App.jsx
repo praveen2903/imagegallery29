@@ -10,6 +10,7 @@ import { AuthContext } from "./context/AuthContext";
 import PhoneLogin from "./Components/authetication/PhoneLogin";
 import ResetPassword from "./Components/authetication/ResetPassword";
 import About from "./Components/homesection/About";
+import VerifyingEmail from "./Components/authetication/VerifyingEmail";
 
 export default function App() {
   const { currentUser } = useContext(AuthContext);
@@ -34,6 +35,7 @@ export default function App() {
         <Route path="/register" element={<Register/>} />
         <Route path="/phonelogin" element={<PhoneLogin/>} />
         <Route path="/reset" element={<ResetPassword/>} />
+        <Route path='/verification' element={<VerifyingEmail/>}/>
       </Routes>
     </div>
       

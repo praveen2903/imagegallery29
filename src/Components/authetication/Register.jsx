@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import img from '../../assets/registerpage.jpeg'
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
+import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth"
 import {auth, storage ,db} from '../../firebase/config'
 import { useState } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -23,6 +23,7 @@ export default function Register() {
     if (file && allowedTypes.includes(file.type)) {
       try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
+        await sendEmailVerification(res.user)
         const date = new Date().getTime();
         const storageRef = ref(storage, `profilephotos/${displayName + date}`);
         await uploadBytesResumable(storageRef, file).then(() => {

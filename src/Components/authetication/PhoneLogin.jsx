@@ -1,5 +1,5 @@
 import React from 'react';
-import img from '../../assets/phonewallpaper.jpg';
+import img from '../../assets/phonewallpaper.gif';
 import { MdOutlineArrowBack } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 import 'react-phone-number-input/style.css';
@@ -12,7 +12,7 @@ import { doc, setDoc } from 'firebase/firestore';
 const PhoneLogin = () => {
   const [number, setNumber] = useState('');
   const [name, setDisplayName] = useState('');
-  const [err, setErr] = useState(false);
+  const [err, setErr] = useState('');
   const [otp, setOtp] = useState('');
   const [flag, setFlag] = useState(false);
   const [confirmObj, setConfirmObj] = useState('');
@@ -26,7 +26,7 @@ const PhoneLogin = () => {
 
   const getOtp = async (e) => {
     e.preventDefault();
-    setErr(false);
+    setErr('');
 
     if (number === '' || number === undefined || name === '') {
       setErr('Please enter a valid phone number and display name.');
@@ -47,7 +47,7 @@ const PhoneLogin = () => {
     if (otp === '' || otp === null) {
       return;
     }
-    setErr(false);
+    setErr('');
     try {
         await confirmObj.confirm(otp);
         await updateProfile(auth.currentUser, {
@@ -58,10 +58,11 @@ const PhoneLogin = () => {
           phoneNumber: number,
           displayName: name,
         });
+        alert(`welcome to image gallery ${name}`)
         navigate('/home');
 
     } catch (err) {
-      setErr('Error verifying OTP and uploading profile photo.');
+      setErr('enter correct otp ..');
     }
   };
 
@@ -117,7 +118,7 @@ const PhoneLogin = () => {
           </form>
           <form onClick={verifyOtp} className="card-body" style={{ display: flag ? 'block' : 'none' }}>
             <div>
-              {!err && <span className="text-red-700">enter correct code ...</span>}
+              {!err && <span className="text-red-700">{err}</span>}
             </div>
             <div className="form-control">
               <label className="label">

@@ -6,7 +6,7 @@ import { db } from '../../firebase/config';
 import { collection, onSnapshot, query } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import {AiOutlineArrowRight} from 'react-icons/ai'
-import photo from '../../assets/photo.jpg'
+import photo from '../../assets/iron.jpeg'
 import ContactCard from './ContactCard';
 
 const About = () => {
