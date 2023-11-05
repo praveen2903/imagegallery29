@@ -8,6 +8,8 @@ import { auth } from "../firebase/config";
 import photo from '../assets/iron.jpeg'
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import {AiOutlineHome} from 'react-icons/ai'
+
  
 function NavbarDefault() {
   const [theme,setTheme]=useState(localStorage.getItem("theme")? localStorage.getItem("theme"):"light");
@@ -33,9 +35,14 @@ function NavbarDefault() {
       <div className="navbar bg-blue-500 rounded-lg">
         <div className="flex-1">
           <img src={logo} className='h-[60px] w-[60px] md:h-[80px] md:w-[80px] p-3 rounded' alt='logo'/>
-          <Link to="/home" className="text-xl font-bold text-white cursor-pointer">Gallery</Link>
+          <Link to="/home" className="text-xl font-bold text-white cursor-pointer hidden sm:block">Gallery</Link>
         </div>
         <div className="flex-none gap-2 md:gap-6 md:pr-6">
+          <div className="form-control">
+              <Link to="/home" className="text-3xl float-left my-4 text-white hover:underline">
+                  <AiOutlineHome/>
+              </Link>
+            </div>
           <div className="form-control">
               <Link to="/addedphotos" className='items-center font-bold text-white cursor-pointer'>
                   Added

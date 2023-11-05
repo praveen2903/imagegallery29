@@ -50,7 +50,7 @@ const ImagesAdded = () => {
       ) : (
         <div>
           <div className='flex items-center justify-center text-3xl font-bold mb-10'>Uploaded Images</div>
-          <div className='grid gap-10 lg:grid-cols-3 md:grid-cols-2 mx-8 cursor-pointer'>
+          <div className='grid gap-10 lg:grid-cols-3 md:grid-cols-2 md:mx-8 cursor-pointer'>
             {images.map((image, index) => (
               <Card key={index} photoUrL={image.imageUrL} name={image.name} userphoto={image.userphoto} title={image.title} description={image.description} address={image.contact}/>
             ))}

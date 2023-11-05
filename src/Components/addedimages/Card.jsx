@@ -2,7 +2,7 @@ import React from 'react'
 
 function Card({photoUrL,userphoto, name,title,description,address}) {
   return (
-    <div>
+    <div className='custom-box-shadow h-full rounded-3xl xl:mx-4 p-1'>
       <div className="card w-96 bg-base-100 shadow-xl">
         <figure><img src={photoUrL} alt="/" className='h-[200px] w-[200px]' /></figure>
         <div className="card-body">

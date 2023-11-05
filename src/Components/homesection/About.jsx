@@ -6,6 +6,8 @@ import { db } from '../../firebase/config';
 import { collection, onSnapshot, query } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import {AiOutlineArrowRight} from 'react-icons/ai'
+import photo from '../../assets/photo.jpg'
+import ContactCard from './ContactCard';
 
 const About = () => {
     const { currentUser } = useContext(AuthContext);
@@ -45,10 +47,10 @@ const About = () => {
                 <p className='text-3xl font-bold'>Contact Info</p>
             </div>
             <div className='md:px-12 p-4 max-w-screen-2xl mx-auto mt-3'>
-                <div className='bg-gradient-to-r from-[#ee9ae5] to-[#5961f9] rounded-xl rounded-br-80px md:p-9 px-4 py-9'>
+                <div className='bg-gradient-to-r from-[#dbcdda] to-[#5961f9] rounded-xl rounded-br-80px md:p-9 px-4 py-9'>
                     <div className='flex flex-col md:flex-row justify-between items-center gap-10'>
                         <div>
-                            <img src={currentUser?.photoURL} alt='img' className='lg:h-[400px] lg:w-[400px] rounded-full' />
+                            <img src={currentUser?.photoURL || photo} alt='img' className='lg:h-[400px] lg:w-[400px] rounded-full' />
                         </div>
                         <div className='md:w-3/5 '>
                             <h2 className='md:text-4xl text-xl font-semibold text-[#09090b] mb-6 leading-relaxed'>{currentUser?.email || currentUser?.phoneNumber}</h2>
@@ -104,6 +106,7 @@ const About = () => {
                     )}                    
             </div>
         </div>
+        <ContactCard/>
     </div>
     );
 };
