@@ -3,6 +3,7 @@ import clock from '../../assets/clock.gif'
 import {
   Card,
   CardBody,
+  CardFooter,
   Typography,
 } from "@material-tailwind/react";
 import img from '../../assets/email.png'
@@ -23,6 +24,11 @@ const VerifyingEmail = () => {
     if (user && user.emailVerified) {
       setEmailVerified(true);
     }
+  };
+  const handleVerify = () => {
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 1000);
   };
 
   useEffect(() => {
@@ -78,6 +84,9 @@ const VerifyingEmail = () => {
               </div>
           </div>
         </CardBody>
+        <CardFooter>
+          <button onClick={handleVerify} className='p-4 rounded-full font-bold text-white bg-blue-800 hover:bg-blue-500'>Verify</button>
+        </CardFooter>
       </Card>
     </div>
   )
