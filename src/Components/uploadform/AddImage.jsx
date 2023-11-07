@@ -5,6 +5,9 @@ import { AuthContext } from '../../context/AuthContext'
 import { db, storage } from '../../firebase/config'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { addDoc, collection } from 'firebase/firestore'
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
   Card,
   CardHeader,
@@ -47,6 +50,7 @@ function AddImage() {
           setImageDescription(description)
           setImageTitle(title)
           setProgress(100)
+          toast.success("Photo added succesfully");
 
           await addDoc(collection(db,"userPhotos"),{
             uid:fileId,
@@ -88,53 +92,55 @@ function AddImage() {
           <progress className="progress progress-error w-56" value={progress} max="100"></progress>
         )}        
         {upload && progress === 100  &&
-          <Card className="w-full max-w-[48rem] flex-row p-4 bg-blue-400 mt">
-          <CardHeader
-            shadow={true}
-            floated={true}
-            className="m-0 w-2/5 shrink-0 rounded-r-none"
-          >
-            <img
-              src={url}
-              alt="/not found"
-              className="object-cover h-[400px] w-[400px]"
-            />
-          </CardHeader>
-          <CardBody className="px-4 gap-10 w-3/5">
-            <Typography variant="h6" color="white" className="mb-4 uppercase flex gap-10">
-              <span>User Name-- </span>{currentUser?.displayName}
-            </Typography>
-            <Typography variant="h6" color="white" className="mb-4 flex gap-10">
-              <span className='uppercase'>User email-- </span>{currentUser?.email}
-            </Typography>
+          <div>
+            <Card className="w-full max-w-[48rem] flex-row p-4 mt-10 bg-blue-400 mt">
+              <CardHeader
+                shadow={true}
+                floated={true}
+                className="m-0 w-2/5 shrink-0 rounded-r-none"
+              >
+                <img
+                  src={url}
+                  alt="/not found"
+                  className="object-cover h-[400px] w-[400px]"
+                />
+              </CardHeader>
+              <CardBody className="px-4 gap-10 w-3/5">
+                <Typography variant="h6" color="white" className="mb-4 uppercase flex gap-10">
+                  <span>User Name-- </span>{currentUser?.displayName}
+                </Typography>
+                <Typography variant="h6" color="white" className="mb-4 flex gap-10">
+                  <span className='uppercase'>User email-- </span>{currentUser?.email}
+                </Typography>
 
-            <Typography variant="h4" color="black" className="mb-2 uppercase mt-10">
-              <span>Image Title: </span>{imagetitle}
-            </Typography>
-            <Typography color="black" className="mb-8 font-normal mt-10">
-              {imagedescription}
-            </Typography>
-            <a href="/addedphotos" className="inline-block">
-              <Button variant="text" className="flex items-center gap-2 absolute bottom-10 right-10">
-                Learn More
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  className="h-4 w-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                  />
-                </svg>
-              </Button>
-            </a>
-          </CardBody>
-        </Card> 
+                <Typography variant="h4" color="black" className="mb-2 uppercase mt-10">
+                  <span>Image Title: </span>{imagetitle}
+                </Typography>
+                <Typography color="black" className="mb-8 font-normal mt-10">
+                  {imagedescription}
+                </Typography>
+                <a href="/addedphotos" className="inline-block">
+                  <Button variant="text" className="flex items-center gap-2 absolute bottom-10 right-10">
+                    View More
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      className="h-4 w-4"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                      />
+                    </svg>
+                  </Button>
+                </a>
+              </CardBody>
+            </Card> 
+          </div>
         }
         {err && <span>some thing went wrong</span>}
         </div>

@@ -11,6 +11,7 @@ import PhoneLogin from "./Components/authetication/PhoneLogin";
 import ResetPassword from "./Components/authetication/ResetPassword";
 import About from "./Components/homesection/About";
 import VerifyingEmail from "./Components/authetication/VerifyingEmail";
+import { ToastContainer } from "react-toastify";
 
 export default function App() {
   const { currentUser } = useContext(AuthContext);
@@ -37,6 +38,7 @@ export default function App() {
         <Route path="/reset" element={<ResetPassword/>} />
         <Route path='/verifypage' element={<VerifyingEmail/>}/>
       </Routes>
+      <ToastContainer position="top-right" bodyClassName="text-center font-bold text-blue-900"/>
     </div>
       
   )

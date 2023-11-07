@@ -5,6 +5,7 @@ import {auth, storage ,db} from '../../firebase/config'
 import { useState } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 export default function Register() {
   const [err, setErr] = useState(false);
@@ -42,7 +43,7 @@ export default function Register() {
                 });
 
                 navigate('/verifypage');
-                alert(`verification link sent to mail: ${email}`);
+                toast(`verification link sent to mail: ${email}`)
               } catch (err) {
                 console.log(err);
                 setErr(true);

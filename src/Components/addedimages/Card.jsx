@@ -13,7 +13,7 @@ function Card({photoUrL,userphoto, name,title,description,address}) {
           <p className='text-center font-semibold m-3'>{title}</p>
           <p>{description}</p>
           <div className="card-actions justify-end m-2">
-            <div className="badge badge-outline rounded-full bg-[#38bdf8] p-3 font-mono">{address}</div> 
+            <div className="badge badge-outline rounded-full bg-[#38bdf8] text-white text-[15px] p-3 font-mono">{address}</div> 
           </div>
         </div>
       </div>

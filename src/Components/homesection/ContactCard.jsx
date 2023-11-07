@@ -16,7 +16,7 @@ const ContactCard = () => {
   const[message,setMessage]=useState("");
   const handleSubmit = (e) => {
     e.preventDefault();  
-    emailjs.sendForm('service_60deouj', 'template_fh1hh3e', form.current, 'SEYplcctvMg-dG9Uk')
+    emailjs.sendForm('service_00ghww6', 'template_x41m5ck', form.current, 'TP4OxTSn6LGe4HIEB')
     .then((result) => {
       console.log(result.text);
     },(error) => {
@@ -26,7 +26,7 @@ const ContactCard = () => {
     setMail("");
     setPhone("");
     setMessage("");
-    toast.success("Message send succesfully");
+    toast.success("email sent successfully.")
   };
   return (
     <section className="flex-1 bg-gradient-to-r from-[#dbcdda] to-[#5961f9] p-3 m-10 rounded-lg" id="#contact">
@@ -52,8 +52,8 @@ const ContactCard = () => {
               <HiMail />
             </div>
             <p>
-              <a href="mailto:rokkamsaipraveen5l0@gmail.com" className="text-white hover:text-white">rokkamsaipraveen   @gmail.com</a>
-              </p>
+              <a href="mailto:rokkamsaipraveen@gmail.com" className="text-white hover:text-white">rokkamsaipraveen@gmail.com</a>
+            </p>
           </div>
         </div>
       </motion.div>
@@ -67,7 +67,7 @@ const ContactCard = () => {
             initial={{y:100}}
             whileInView={{y:0}}
             transition={{duration:0.7}}>
-          <div className="">
+          <div className="text-black">
             <div className="flex gap-2 items-center p-4 my-2 border-2 border-black rounded-md">
               <CgProfile size={20} color="black" />
               <input
@@ -100,7 +100,7 @@ const ContactCard = () => {
                 type="tel"
                 name="phone"
                 id="phone"
-                placeholder="Phone"
+                placeholder="phone"
                 required
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
@@ -117,12 +117,12 @@ const ContactCard = () => {
             required
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="p-4 my-2 border-2 border-black rounded-md bg-white"
+            className="p-4 my-2 border-2 border-black text-black rounded-md bg-white"
           ></textarea>
           <div>
             <button
               type="submit"
-              className="bg-stone-700 text-white px-4 py-2 rounded-md md:w-1/2 hover:translate-x-16 duration-1000"
+              className="bg-stone-600 text-white px-4 py-2 rounded-md md:w-1/2 hover:translate-x-12 duration-1000"
             >
               Send message
             </button>

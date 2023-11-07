@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { RecaptchaVerifier, signInWithPhoneNumber, updateProfile } from 'firebase/auth';
 import { auth, db } from '../../firebase/config';
 import { doc, setDoc } from 'firebase/firestore';
+import { toast } from 'react-toastify';
 
 const PhoneLogin = () => {
   const [number, setNumber] = useState('');
@@ -58,7 +59,7 @@ const PhoneLogin = () => {
           phoneNumber: number,
           displayName: name,
         });
-        alert(`welcome to image gallery ${name}`)
+        toast.success(`Mobile Login sucessful,welcome ${name}`)
         navigate('/home');
 
     } catch (err) {

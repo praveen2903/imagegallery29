@@ -5,8 +5,8 @@ import { AuthContext } from '../../context/AuthContext';
 import { db } from '../../firebase/config';
 import { collection, onSnapshot, query } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
-import {AiOutlineArrowRight} from 'react-icons/ai'
-import photo from '../../assets/iron.jpeg'
+import { AiOutlineArrowRight } from 'react-icons/ai';
+import photo from '../../assets/iron.jpeg';
 import ContactCard from './ContactCard';
 
 const About = () => {
@@ -17,26 +17,26 @@ const About = () => {
     useEffect(() => {
         let unsub;
         const fetchData = async () => {
-        try {
-            const q = query(collection(db, 'userPhotos'));
-            unsub = onSnapshot(q, (querySnapshot) => {
-            const imageList = [];
-            querySnapshot.forEach((doc) => {
-                const data = doc.data();
-                imageList.push(data);
-            });
-            setImages(imageList);
-            setLoading(false);
-            });
+            try {
+                const q = query(collection(db, 'userPhotos'));
+                unsub = onSnapshot(q, (querySnapshot) => {
+                    const imageList = [];
+                    querySnapshot.forEach((doc) => {
+                        const data = doc.data();
+                        imageList.push(data);
+                    });
+                    setImages(imageList);
+                    setLoading(false);
+                });
 
-            return unsub;
-        } catch (error) {
-            console.error(error);
-        }
+                return unsub;
+            } catch (error) {
+                console.error(error);
+            }
         };
         fetchData();
         return () => {
-        unsub()
+            unsub();
         };
     }, []);
 
@@ -62,8 +62,15 @@ const About = () => {
                 </div>
             </div>
             <div className='mt-5'>
-                <div className='flex items-center justify-center'>
-                    <p className='text-3xl font-bold'>Your Uploads</p>
+                <div>
+                    <div className='flex items-center justify-center'>
+                        <p className='text-3xl font-bold'>Your Uploads</p>
+                    </div>
+                    <div className='flex items-center justify-center mt-10'>
+                        <Link to="/upload">
+                            <button className='p-3 font-bold flex gap-2 md:text-xl rounded-full bg-gradient-to-r from-[#6d28d9] to-[#5961f9] uppercase'>add image <AiOutlineArrowRight color='white' size={25}/></button>
+                        </Link>
+                    </div>
                 </div>
                 <div>
                     {loading ? (
@@ -72,42 +79,29 @@ const About = () => {
                         </div>
                     ) : (
                         <div className='m-2'>
-                            {images.map((image, index) => {
-                            if(currentUser?.email===image.contact){
-                                return (
-                                    <div className='grid gap-10 lg:grid-cols-3 md:grid-cols-2 mx-10 cursor-pointer'>
-                                        <div key={index} className="group relative hover:scale-110 ease-out duration-300">
-                                            <img src={image.imageUrL} alt={image.title} className="rounded-3xl h-[100px] w-[100px] md:h-[400px] md:w-[400px]" />
-                                            
-                                            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-white text-center">
-                                                <h3 className="text-2xl font-medium mb-2">{image.title}</h3>
-                                            </div>
-                                        </div>
-                                        <div className='flex items-center justify-center'>
-                                            <Link to="/upload">
-                                                <button className='p-3 font-bold flex gap-2 text-xl rounded-full bg-gradient-to-r from-[#6d28d9] to-[#5961f9]'>Add image <AiOutlineArrowRight color='white' size={25}/></button>
-                                            </Link>
-                                        </div>                                   
-                                    </div>
-                                )
-                            }
-                            else{
-                                return (
-                                    <div className='flex items-center justify-center mt-10'>
-                                        <Link to="/upload">
-                                            <button className='p-3 font-bold flex gap-2 text-xl rounded-full bg-gradient-to-r from-[#6d28d9] to-[#5961f9]'>Upload an image <AiOutlineArrowRight color='white' size={25}/></button>
-                                        </Link>
-                                    </div>                                    
-                                )
-                            }
-                        }                        
-                        )}
-                        </div>                    
-                    )}                    
+                            {images.some(image => currentUser?.email === image.contact) ? (
+                                <div className='grid gap-10 lg:grid-cols-3 md:grid-cols-2 mx-10 cursor-pointer'>
+                                    {images.map((image, index) => {
+                                        if (currentUser?.email === image.contact) {
+                                            return (
+                                                <div key={index} className="group relative hover:scale-110 ease-out duration-300 flex">
+                                                    <img src={image.imageUrL} alt={image.title} className="rounded-3xl h-[400px] w-[400px] md:h-[400px] md:w-[400px]" />
+                                                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-white text-center">
+                                                        <h3 className="text-2xl font-medium mb-2">{image.title}</h3>
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
+                                        return null;
+                                    })}
+                                </div>
+                            ) : null}
+                        </div>
+                    )}
+                </div>
             </div>
+            <ContactCard />
         </div>
-        <ContactCard/>
-    </div>
     );
 };
 

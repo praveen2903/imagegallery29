@@ -8,6 +8,8 @@ import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, db , googleprovider, githubprovider, facebookprovider } from "../../firebase/config";
 import { useState, useEffect } from "react";
 import { doc, setDoc, getDocs, collection, query, where } from "firebase/firestore";
+import 'react-toastify/dist/ReactToastify.css';
+import {toast} from 'react-toastify';
 
 
 export default function Login() {
@@ -57,7 +59,7 @@ export default function Login() {
       });
 
       navigate("/home")
-      alert(`logged in through google with ${data.user.email}`)
+      toast.success(`Google Login sucessful,welcome ${data.user.displayName}`)
     })
     .catch((err)=>{
       console.error("Google Authentication error:", err);
@@ -82,7 +84,7 @@ export default function Login() {
       });
 
       navigate("/home")
-      alert(`logged in through github with ${data.user.email}`)
+      toast.success(`Github Login sucessful,welcome ${data.user.displayName}`)
     })
     .catch((err)=>{
       console.error("Google Authentication error:", err);
@@ -102,7 +104,7 @@ export default function Login() {
       });
 
       navigate("/home")
-      alert(`logged in through facebook with ${data.user.email}`)
+      toast.success(`Facebook Login sucessful,welcome ${data.user.displayName}`)
     })
     .catch((err)=>{
       console.error("Google Authentication error:", err);
