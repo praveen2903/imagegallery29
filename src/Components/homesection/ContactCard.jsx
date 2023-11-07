@@ -52,7 +52,7 @@ const ContactCard = () => {
               <HiMail />
             </div>
             <p>
-              <a href="mailto:rokkamsaipraveen@gmail.com" className="text-white hover:text-white">rokkamsaipraveen@gmail.com</a>
+              <a href="mailto:rokkamsaipraveen5l0@gmail.com" className="text-white cursor-pointer hover:text-white">rokkamsaipraveen5l0@gmail.com</a>
             </p>
           </div>
         </div>

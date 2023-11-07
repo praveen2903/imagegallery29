@@ -120,7 +120,7 @@ export default function Login() {
     try {
       await signInWithEmailAndPassword(auth, userEmail, userPassword);
       navigate("/home");
-      alert(`logged with ${email}`)
+      toast.success(`Login successful, welcome ${email}`)
     } catch (error) {
       setErr(true);
       setEmail('');
