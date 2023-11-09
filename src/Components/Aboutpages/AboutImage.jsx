@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
 import ScrollToTop from "react-scroll-to-top";
 import { motion } from 'framer-motion';
-import EnlargePic from "./EnlargePic";
+import EnlargePic from "../homesection/EnlargePic";
 
 function AboutImage({image,title,description}) {
   const [enlarged, setEnlarged] = useState(false);

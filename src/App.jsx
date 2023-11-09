@@ -9,10 +9,10 @@ import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import PhoneLogin from "./Components/authetication/PhoneLogin";
 import ResetPassword from "./Components/authetication/ResetPassword";
-import About from "./Components/homesection/About";
+import About from "./Components/Aboutpages/About";
 import VerifyingEmail from "./Components/authetication/VerifyingEmail";
 import { ToastContainer } from "react-toastify";
-import AboutImage from "./Components/homesection/AboutImage";
+import AboutImage from "./Components/Aboutpages/AboutImage";
 
 export default function App() {
   const { currentUser } = useContext(AuthContext);

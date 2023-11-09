@@ -15,7 +15,6 @@ const ImagesAdded = () => {
   const [loading, setLoading] = useState(true);
   const [imageenlarge, setImageEnlarge] = useState('');
   const [enlarged, setEnlarged] = useState(false);
-  const [offset, setOffset] = useState(0);
 
   useEffect(() => {
     let unsub;
