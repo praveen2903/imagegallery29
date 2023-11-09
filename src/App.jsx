@@ -33,6 +33,7 @@ export default function App() {
         <Route path="/upload" element={<ProtectedRoute><AddImage/></ProtectedRoute>} />
         <Route path="/" element={<Login/>} />
         <Route path="/about" element={<ProtectedRoute><About/></ProtectedRoute>} />
+        <Route path="/addedphotos" element={<ProtectedRoute><ImagesAdded/></ProtectedRoute>} />
         <Route path="/addedphotos/:id" element={<ProtectedRoute><ImagesAdded/></ProtectedRoute>} />
         <Route path="/register" element={<Register/>} />
         <Route path="/phonelogin" element={<PhoneLogin/>} />

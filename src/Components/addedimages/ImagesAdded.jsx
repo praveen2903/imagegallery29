@@ -8,7 +8,7 @@ import { AiOutlineArrowRight } from 'react-icons/ai';
 import EnlargePic from '../homesection/EnlargePic';
 import ScrollToTop from 'react-scroll-to-top';
 import ReactPaginate from 'react-paginate';
-import { useSwipeable } from 'react-swipeable'; // Import the useSwipeable hook
+import { useSwipeable } from 'react-swipeable';
 
 const ImagesAdded = () => {
   const [images, setImages] = useState([]);
@@ -66,7 +66,6 @@ const ImagesAdded = () => {
     setEnlarged(!enlarged);
   }
 
-  // Define swipe handlers
   const swipeHandlers = useSwipeable({
     onSwipedLeft: () => {
       if (currentPage < totalPages) {

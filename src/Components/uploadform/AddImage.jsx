@@ -120,7 +120,7 @@ function AddImage() {
                 <Typography color="black" className="mb-8 font-normal mt-10">
                   {imagedescription}
                 </Typography>
-                <Link to="/addedphotos/:id" className="inline-block">
+                <Link to="/addedphotos" className="inline-block">
                   <Button variant="text" className="flex items-center gap-2">
                     View More
                     <svg

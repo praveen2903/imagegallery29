@@ -44,7 +44,7 @@ function NavbarDefault() {
               </Link>
             </div>
           <div className="form-control">
-              <Link to="/addedphotos/:id" className='items-center font-bold text-white cursor-pointer hover:text-[#ea580c] hover:underline md:text-xl'>
+              <Link to="/addedphotos" className='items-center font-bold text-white cursor-pointer hover:text-[#ea580c] hover:underline md:text-xl'>
                   Added
               </Link>
           </div>

@@ -10,6 +10,11 @@ import photo from '../../assets/iron.jpeg';
 import ContactCard from './ContactCard';
 import { signOut } from 'firebase/auth';
 import ScrollToTop from 'react-scroll-to-top';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import {motion} from 'framer-motion'
+import 'react-slideshow-image/dist/styles.css'
 
 const About = () => {
     const { currentUser } = useContext(AuthContext);
@@ -41,6 +46,38 @@ const About = () => {
             unsub();
         };
     }, []);
+
+    const sliderSettings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        focusOnSelect:true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        responsive: [
+        {
+            breakpoint: 1024,
+            settings: {
+            slidesToShow: 2,
+            },
+        },
+        {
+            breakpoint:768,
+            settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            initialSlide: 2
+            }
+        },
+        {
+            breakpoint: 480,
+            settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+            }
+        },
+        ],
+    };
 
     return (
         <div>
@@ -84,26 +121,25 @@ const About = () => {
                             <span className="loading loading-spinner loading-lg text-info"></span>
                         </div>
                     ) : (
-                        <div className='m-2'>
-                            {images.some(image => currentUser?.email === image.contact || currentUser?.phoneNumber===image.contact) ? (
-                                <div className='grid gap-10 lg:grid-cols-3 md:grid-cols-2 mx-10 cursor-pointer'>
+                        <div className='m-2 mx-16 px-12'>
+                            {images.some(image => currentUser?.email === image.contact || currentUser?.phoneNumber === image.contact) ? (
+                                <Slider {...sliderSettings} className='pl-5'>
                                     {images.map((image, index) => {
-                                        if (currentUser?.email === image.contact || currentUser?.phoneNumber===image.contact) {
+                                        if (currentUser?.email === image.contact || currentUser?.phoneNumber === image.contact) {
                                             return (
-                                                <Link to="/yourImage">
-                                                    <div key={index} className="group relative hover:scale-110 ease-out duration-300 flex">
+                                                <motion.div initial={{scale:0.6}} whileInView={{scale:1}} transition={{duration:1}} key={index} className='slider-item'>
+                                                    <div className="group relative hover:scale-110 ease-out duration-300 flex">
                                                         <img src={image.imageUrL} alt={image.title} className="rounded-3xl h-[400px] w-[400px] md:h-[400px] md:w-[400px]" />
                                                         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-white text-center">
                                                             <h3 className="text-2xl font-medium mb-2">{image.title}</h3>
                                                         </div>
-                                                         
                                                     </div>
-                                                </Link>
-                                            )
+                                                </motion.div>
+                                            );
                                         }
                                         return null;
                                     })}
-                                </div>
+                                </Slider>
                             ) : null}
                         </div>
                     )}
@@ -113,6 +149,17 @@ const About = () => {
             <div className='bg-[#312e81] p-4 text-2xl flex items-center justify-center font-mono rounded-lg m-5'>
                 Website made and Maintained by ❤️ Rokkam Sai Praveen
             </div>
+            <style>{`
+                    /* Left Arrow */
+                    .slick-prev:before {
+                      color: #0369a1;
+                    }
+
+                    /* Right Arrow */
+                    .slick-next:before {
+                      color: #0369a1;
+                    }
+                  `}</style>
         </div>
     );
 };
