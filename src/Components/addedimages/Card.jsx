@@ -1,10 +1,21 @@
-import React from 'react'
+import React from 'react';
 
-function Card({photoUrL,userphoto, name,title,description,address}) {
+function Card({ photoUrL, userphoto, name, title, description, address, onImageClick }) {
+  const handleImageClick = () => {
+    onImageClick(photoUrL);
+  };
+
   return (
     <div className='custom-box-shadow h-full rounded-3xl xl:mx-4 p-1'>
       <div className="card w-96 bg-base-100 shadow-xl">
-        <figure><img src={photoUrL} alt="/" className='h-[200px] w-[200px]' /></figure>
+        <figure>
+          <img
+            src={photoUrL}
+            alt="/"
+            className='h-[200px] w-[200px] cursor-pointer'
+            onClick={handleImageClick}
+          />
+        </figure>
         <div className="card-body">
           <h2 className="card-title gap-4">
             <img src={userphoto} alt='/' className='rounded-full w-10'/>
@@ -13,12 +24,12 @@ function Card({photoUrL,userphoto, name,title,description,address}) {
           <p className='text-center font-semibold m-3'>{title}</p>
           <p>{description}</p>
           <div className="card-actions justify-end m-2">
-            <div className="badge badge-outline rounded-full bg-[#38bdf8] text-white text-[15px] p-3 font-mono">{address}</div> 
+            <div className="badge badge-outline rounded-full bg-[#38bdf8] text-white text-[15px] p-3 font-mono">{address}</div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Card
+export default Card;

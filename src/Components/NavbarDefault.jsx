@@ -39,18 +39,18 @@ function NavbarDefault() {
         </div>
         <div className="flex-none gap-2 md:gap-6 md:pr-6">
           <div className="form-control">
-              <Link to="/home" className="text-3xl float-left my-4 text-white hover:underline">
+              <Link to="/home" className="text-3xl float-left my-4 text-white hover:text-[#ea580c]">
                   <AiOutlineHome/>
               </Link>
             </div>
           <div className="form-control">
-              <Link to="/addedphotos" className='items-center font-bold text-white cursor-pointer hover:text-[#ea580c] hover:underline md:text-xl'>
+              <Link to="/addedphotos/1" className='items-center font-bold text-white cursor-pointer hover:text-[#ea580c] hover:underline md:text-xl'>
                   Added
               </Link>
           </div>
           <div className="form-control">
-            <Link to="/upload" className='items-center'>
-                <MdAddCircleOutline size={40} color='orange'/>
+            <Link to="/upload" className='items-center text-[#ea580c] hover:text-[#facc15]'>
+                <MdAddCircleOutline size={40}/>
             </Link>
           </div>
           <div className="dropdown dropdown-end">

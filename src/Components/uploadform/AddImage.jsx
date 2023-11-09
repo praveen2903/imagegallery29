@@ -16,12 +16,13 @@ import {
   Button,
 } from "@material-tailwind/react";
 import photo from '../../assets/photo.jpg'
+import { Link } from 'react-router-dom'
 
 function AddImage() {
   const [file,setFile]=useState(null)
   const [title,setTitle]=useState('')
   const [upload,setUpload]=useState(false)
-  const [description,setDescription]=useState("")
+  const [description,setDescription]=useState('')
   const [fileformat,setFileformat]=useState('uploadtype')
   const [progress,setProgress]=useState(0)
   const [err,setErr]=useState(false)
@@ -119,8 +120,8 @@ function AddImage() {
                 <Typography color="black" className="mb-8 font-normal mt-10">
                   {imagedescription}
                 </Typography>
-                <a href="/addedphotos" className="inline-block">
-                  <Button variant="text" className="flex items-center gap-2 absolute bottom-10 right-10">
+                <Link to="/addedphotos/:index" className="inline-block">
+                  <Button variant="text" className="flex items-center gap-2">
                     View More
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -137,7 +138,7 @@ function AddImage() {
                       />
                     </svg>
                   </Button>
-                </a>
+                </Link>
               </CardBody>
             </Card> 
           </div>

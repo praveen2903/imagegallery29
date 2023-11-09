@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import NavbarDefault from '../NavbarDefault';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import { db } from '../../firebase/config';
+import { auth, db } from '../../firebase/config';
 import { collection, onSnapshot, query } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import photo from '../../assets/iron.jpeg';
 import ContactCard from './ContactCard';
+import { signOut } from 'firebase/auth';
+import ScrollToTop from 'react-scroll-to-top';
 
 const About = () => {
     const { currentUser } = useContext(AuthContext);
@@ -43,6 +45,7 @@ const About = () => {
     return (
         <div>
             <NavbarDefault />
+            <ScrollToTop smooth color='#f97316' width='35' height='25' />
             <div className='flex items-center justify-center'>
                 <p className='text-3xl font-bold'>Contact Info</p>
             </div>
@@ -59,6 +62,9 @@ const About = () => {
                             </p>
                         </div>
                     </div>
+                    <div className='text-white text-xl flex items-end justify-end'>
+                        <button className='bg-[#dc2626] hover:bg-[#ea580c] p-4 rounded-2xl'><Link to="/" onClick={()=>signOut(auth)}>Logout</Link></button>
+                    </div>
                 </div>
             </div>
             <div className='mt-5'>
@@ -66,7 +72,7 @@ const About = () => {
                     <div className='flex items-center justify-center'>
                         <p className='text-3xl font-bold'>Your Uploads</p>
                     </div>
-                    <div className='flex items-center justify-center mt-10'>
+                    <div className='flex items-center justify-center m-10'>
                         <Link to="/upload">
                             <button className='p-3 font-bold flex gap-2 md:text-xl rounded-full bg-gradient-to-r from-[#6d28d9] to-[#5961f9] uppercase'>add image <AiOutlineArrowRight color='white' size={25}/></button>
                         </Link>
@@ -79,17 +85,20 @@ const About = () => {
                         </div>
                     ) : (
                         <div className='m-2'>
-                            {images.some(image => currentUser?.email === image.contact) ? (
+                            {images.some(image => currentUser?.email === image.contact || currentUser?.phoneNumber===image.contact) ? (
                                 <div className='grid gap-10 lg:grid-cols-3 md:grid-cols-2 mx-10 cursor-pointer'>
                                     {images.map((image, index) => {
-                                        if (currentUser?.email === image.contact) {
+                                        if (currentUser?.email === image.contact || currentUser?.phoneNumber===image.contact) {
                                             return (
-                                                <div key={index} className="group relative hover:scale-110 ease-out duration-300 flex">
-                                                    <img src={image.imageUrL} alt={image.title} className="rounded-3xl h-[400px] w-[400px] md:h-[400px] md:w-[400px]" />
-                                                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-white text-center">
-                                                        <h3 className="text-2xl font-medium mb-2">{image.title}</h3>
+                                                <Link to="/yourImage">
+                                                    <div key={index} className="group relative hover:scale-110 ease-out duration-300 flex">
+                                                        <img src={image.imageUrL} alt={image.title} className="rounded-3xl h-[400px] w-[400px] md:h-[400px] md:w-[400px]" />
+                                                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-white text-center">
+                                                            <h3 className="text-2xl font-medium mb-2">{image.title}</h3>
+                                                        </div>
+                                                         
                                                     </div>
-                                                </div>
+                                                </Link>
                                             )
                                         }
                                         return null;
@@ -101,6 +110,9 @@ const About = () => {
                 </div>
             </div>
             <ContactCard />
+            <div className='bg-[#312e81] p-4 text-2xl flex items-center justify-center font-mono rounded-lg m-5'>
+                Website made and Maintained by ❤️ Rokkam Sai Praveen
+            </div>
         </div>
     );
 };

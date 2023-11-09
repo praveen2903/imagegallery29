@@ -8,11 +8,11 @@ const EnlargePic = ({ url, onClose }) => {
       <motion.div initial={{y:"-100vh"}} animate={{y:0}} className="relative">
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 text-white text-2xl cursor-pointer hover:text-red-500"
+          className="absolute top-2 right-2 text-blue-800 text-2xl cursor-pointer hover:text-red-500"
         >
           <CgCloseO/>
         </button>
-        <img src={url} alt='' className="max-w-full max-h-full" />
+        <img src={url} alt='' className="h-[300px] w-[300px] md:h-[500px] md:w-[700px]" />
       </motion.div>
     </motion.div>
   );

@@ -14,6 +14,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { deleteUser } from 'firebase/auth';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const VerifyingEmail = () => {
   const navigate=useNavigate()
@@ -40,7 +41,7 @@ const VerifyingEmail = () => {
 
   useEffect(() => {
     if (emailVerified) {
-      alert(`welcome to image gallery ${auth.currentUser.displayName}`)
+      toast.success(`Welcome to image gallery ${auth.currentUser.displayName}`)
       navigate('/home')
     }
   }, [emailVerified,navigate]);

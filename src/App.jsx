@@ -12,6 +12,7 @@ import ResetPassword from "./Components/authetication/ResetPassword";
 import About from "./Components/homesection/About";
 import VerifyingEmail from "./Components/authetication/VerifyingEmail";
 import { ToastContainer } from "react-toastify";
+import AboutImage from "./Components/homesection/AboutImage";
 
 export default function App() {
   const { currentUser } = useContext(AuthContext);
@@ -32,11 +33,12 @@ export default function App() {
         <Route path="/upload" element={<ProtectedRoute><AddImage/></ProtectedRoute>} />
         <Route path="/" element={<Login/>} />
         <Route path="/about" element={<ProtectedRoute><About/></ProtectedRoute>} />
-        <Route path="/addedphotos" element={<ProtectedRoute><ImagesAdded/></ProtectedRoute>} />
+        <Route path="/addedphotos/:id" element={<ProtectedRoute><ImagesAdded/></ProtectedRoute>} />
         <Route path="/register" element={<Register/>} />
         <Route path="/phonelogin" element={<PhoneLogin/>} />
         <Route path="/reset" element={<ResetPassword/>} />
         <Route path='/verifypage' element={<VerifyingEmail/>}/>
+        <Route path="/yourImage" element={<AboutImage/>}/>
       </Routes>
       <ToastContainer position="top-right" bodyClassName="text-center font-bold text-blue-900"/>
     </div>

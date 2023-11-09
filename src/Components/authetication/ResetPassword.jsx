@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { MdOutlineArrowBack } from 'react-icons/md'
 import { sendPasswordResetEmail } from 'firebase/auth'
 import { auth } from '../../firebase/config'
+import { toast } from 'react-toastify'
 
 function ResetPassword() {
   const navigate=useNavigate()
@@ -12,7 +13,7 @@ function ResetPassword() {
     e.preventDefault()
     const emailvalue=e.target.email.value;
     sendPasswordResetEmail(auth,emailvalue).then(data=>{
-      alert(`check your email :- ${emailvalue}`)
+      toast.success(`check your email :- ${emailvalue}`)
       navigate('/')
     }).catch(err=>{
       alert(err.code)
