@@ -51,7 +51,7 @@ function ImageCardDetails() {
             </h1>
             <div className="flex flex-col sm:flex-row mt-1 sm:mt-14 w-full md:w-11/12">
               <div onClick={toggleEnlargedView}>
-                <motion.img initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} src={photo.url} alt={photo.title} className="custom-box-shadow cursor-pointer sm:h-60 xl:h-96 rounded-3xl md:mx-4 p-1" />
+                <motion.img initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} src={photo.url} alt={photo.title} className="custom-box-shadow cursor-pointer sm:h-60 xl:h-96 rounded-3xl md:mx-4 p-1 md:h-[600px] md:w-[600px]" />
               </div>
               <div className="flex flex-col justify-center mt-5 md:ml-4 lg:ml-20">
                 <p className="text-2xl font-bold lg:text-4xl text-yellow-600 md:text-white md:text-3xl tracking-wider md:p-3">{photo.title}</p>

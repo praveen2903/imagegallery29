@@ -10,16 +10,19 @@ import photo from '../../assets/iron.jpeg';
 import ContactCard from './ContactCard';
 import { signOut } from 'firebase/auth';
 import ScrollToTop from 'react-scroll-to-top';
-import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import {motion} from 'framer-motion'
 import 'react-slideshow-image/dist/styles.css'
+import Slider from 'react-slick';
+import EnlargePic from '../homesection/EnlargePic';
 
 const About = () => {
     const { currentUser } = useContext(AuthContext);
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [enlarged, setEnlarged] = useState(false);
+    const [uploadCount, setUploadCount] = useState(0);
 
     useEffect(() => {
         let unsub;
@@ -46,6 +49,11 @@ const About = () => {
             unsub();
         };
     }, []);
+
+    useEffect(() => {
+        setUploadCount(images.filter(image => currentUser?.email === image.contact || currentUser?.phoneNumber === image.contact).length);
+    }, [images, currentUser]);
+    
 
     const sliderSettings = {
         dots: true,
@@ -79,6 +87,10 @@ const About = () => {
         ],
     };
 
+    function toggleEnlargedView() {
+        setEnlarged(!enlarged);
+      }
+
     return (
         <div>
             <NavbarDefault />
@@ -89,21 +101,23 @@ const About = () => {
             <div className='md:px-12 p-4 max-w-screen-2xl mx-auto mt-3'>
                 <div className='bg-gradient-to-r from-[#dbcdda] to-[#5961f9] rounded-xl rounded-br-80px md:p-9 px-4 py-9'>
                     <div className='flex flex-col md:flex-row justify-between items-center gap-10'>
-                        <div>
-                            <img src={currentUser?.photoURL || photo} alt='img' className='lg:h-[400px] lg:w-[400px] rounded-full' />
+                        <div onClick={toggleEnlargedView}>
+                            <img src={currentUser?.photoURL || photo} alt='img' className='lg:h-[400px] lg:w-[400px] rounded-full cursor-pointer' />
                         </div>
                         <div className='md:w-3/5 '>
                             <h2 className='md:text-4xl text-xl font-semibold text-[#09090b] mb-6 leading-relaxed'>{currentUser?.email || currentUser?.phoneNumber}</h2>
                             <p className='text-[#fbbf24] font-bold font-serif text-2xl'>
                                 {currentUser?.displayName}
                             </p>
+                            {!loading && <p className='text-xl text-black md:text-3xl font-semibold mt-5 font-mono '>Upload Count : {uploadCount}</p>}
                         </div>
                     </div>
-                    <div className='text-white text-xl flex items-end justify-end'>
+                    <div className='text-white gap-5 text-xl flex items-end justify-end'>
                         <button className='bg-[#dc2626] hover:bg-[#ea580c] p-4 rounded-2xl'><Link to="/" onClick={()=>signOut(auth)}>Logout</Link></button>
-                    </div>
+                    </div>  
                 </div>
             </div>
+            
             <div className='mt-5'>
                 <div>
                     <div className='flex items-center justify-center'>
@@ -121,19 +135,21 @@ const About = () => {
                             <span className="loading loading-spinner loading-lg text-info"></span>
                         </div>
                     ) : (
-                        <div className='m-2 mx-16 px-12'>
+                        <div className='m-2 mx-16 px-12 slide-container'>
                             {images.some(image => currentUser?.email === image.contact || currentUser?.phoneNumber === image.contact) ? (
                                 <Slider {...sliderSettings} className='pl-5'>
                                     {images.map((image, index) => {
                                         if (currentUser?.email === image.contact || currentUser?.phoneNumber === image.contact) {
                                             return (
                                                 <motion.div initial={{scale:0.6}} whileInView={{scale:1}} transition={{duration:1}} key={index} className='slider-item'>
-                                                    <div className="group relative hover:scale-110 ease-out duration-300 flex">
-                                                        <img src={image.imageUrL} alt={image.title} className="rounded-3xl h-[400px] w-[400px] md:h-[400px] md:w-[400px]" />
-                                                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-white text-center">
-                                                            <h3 className="text-2xl font-medium mb-2">{image.title}</h3>
+                                                    <Link to={`/profile/${image.title}`}>
+                                                        <div className="group relative hover:scale-110 ease-out duration-300 flex">
+                                                            <img src={image.imageUrL} alt={image.title} className="rounded-3xl h-[400px] w-[400px] md:h-[400px] md:w-[400px] px-4 gap-4" />
+                                                            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-white text-center">
+                                                                <h3 className="text-2xl font-medium mb-2">{image.title}</h3>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    </Link>  
                                                 </motion.div>
                                             );
                                         }
@@ -160,6 +176,7 @@ const About = () => {
                       color: #0369a1;
                     }
                   `}</style>
+            {enlarged && <EnlargePic url={currentUser?.photoURL||photo} onClose={toggleEnlargedView} />}
         </div>
     );
 };
