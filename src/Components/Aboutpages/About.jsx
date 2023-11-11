@@ -138,26 +138,25 @@ const About = () => {
                         <div className='m-2 mx-16 px-12 slide-container'>
                             {images.some(image => currentUser?.email === image.contact || currentUser?.phoneNumber === image.contact) ? (
                                 <Slider {...sliderSettings} className='pl-5'>
-                                    {images.map((image, index) => {
-                                        if (currentUser?.email === image.contact || currentUser?.phoneNumber === image.contact) {
-                                            return (
-                                                <motion.div initial={{scale:0.6}} whileInView={{scale:1}} transition={{duration:1}} key={index} className='slider-item'>
-                                                    <Link to={`/profile/${image.title}`}>
-                                                        <div className="group relative hover:scale-110 ease-out duration-300 flex">
-                                                            <img src={image.imageUrL} alt={image.title} className="rounded-3xl h-[400px] w-[400px] md:h-[400px] md:w-[400px] px-4 gap-4" />
-                                                            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-white text-center">
-                                                                <h3 className="text-2xl font-medium mb-2">{image.title}</h3>
-                                                            </div>
+                                    {images
+                                        .filter(image => currentUser?.email === image.contact || currentUser?.phoneNumber === image.contact)
+                                        .map((image, index) => (
+                                            <motion.div key={index} className='slider-item'>
+                                                <Link to={`/profile/${image.title}`}>
+                                                    <div className="group relative hover:scale-110 ease-out duration-300 flex">
+                                                        <img src={image.imageUrL} alt={image.title} className="rounded-3xl h-[400px] w-[400px] md:h-[400px] md:w-[400px] px-4 gap-4" />
+                                                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-white text-center">
+                                                            <h3 className="text-2xl font-medium mb-2">{image.title}</h3>
                                                         </div>
-                                                    </Link>  
-                                                </motion.div>
-                                            );
-                                        }
-                                        return null;
-                                    })}
+                                                    </div>
+                                                </Link>
+                                            </motion.div>
+                                        ))}
                                 </Slider>
-                            ) : null}
-                        </div>
+                                ) : (
+                                    <p>No matching images for the current user.</p>
+                                )}
+                            </div>
                     )}
                 </div>
             </div>

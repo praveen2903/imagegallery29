@@ -9,6 +9,7 @@ import photo from '../assets/iron.jpeg'
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import {AiOutlineHome} from 'react-icons/ai'
+import {PiUploadSimpleBold} from 'react-icons/pi'
 
  
 function NavbarDefault() {
@@ -40,24 +41,24 @@ function NavbarDefault() {
         </div>
         <div className="flex-none gap-2 md:gap-6 md:pr-6">
           <div className="form-control">
-              <Link to="/home" className={`text-3xl float-left my-4 text-white hover:text-[#ea580c] ${location.pathname === '/home' ? 'text-yellow-500' : ''}`}>
-                  <AiOutlineHome/>
+              <Link to="/home" className={`text-3xl float-left my-4 text-white hover:text-[#ea580c] ${location.pathname === '/home' ? 'text-yellow-500 glow-button' : ''}`}>
+                  <AiOutlineHome size={30}/>
               </Link>
             </div>
           <div className="form-control">
-              <Link to="/addedphotos" className={`items-center font-bold text-white cursor-pointer hover:text-[#ea580c] hover:underline md:text-xl ${location.pathname === '/addedphotos/:id' ? 'text-yellow-500' : ''}`}>
-                  Added
+              <Link to="/addedphotos" className={`items-center font-bold text-white cursor-pointer hover:text-[#ea580c] hover:underline md:text-xl ${location.pathname === '/addedphotos' ? 'text-yellow-500 glow-button' : ''}`}>
+                  <PiUploadSimpleBold size={30}/>
               </Link>
           </div>
           <div className="form-control">
-            <Link to="/upload" className={`items-center text-[#ea580c] hover:text-[#facc15] ${location.pathname==='/upload'? 'text-yellow-500':''}`}>
+            <Link to="/upload" className={`items-center text-[#ea580c] hover:text-[#facc15] ${location.pathname==='/upload'? 'text-yellow-500 glow-button':''}`}>
                 <MdAddCircleOutline size={40}/>
             </Link>
           </div>
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src={currentUser?.photoURL || photo} alt='userphoto' className={`${location.pathname==="/profile"? 'bg-white':''}`} />
+                <img src={currentUser?.photoURL || photo} alt='userphoto' className={`${location.pathname==="/profile"? 'bg-white p-4 glow-image':' '}`} />
               </div>
             </label>
             <ul tabIndex={0} className="mt-2 gap-3 z-[1] p-4 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-60">

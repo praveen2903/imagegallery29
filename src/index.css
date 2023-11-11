@@ -4,3 +4,44 @@
 .custom-box-shadow {
     box-shadow: 0 0 10px rgba(255,255,255,0.8)
 }
+
+
+@keyframes glowing {
+    0% {
+      box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff;
+    }
+    50% {
+      box-shadow: 0 0 5px #fff, 0 0 20px #fff, 0 0 30px #fff;
+    }
+    100% {
+      box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff;
+    }
+  }
+  
+  .glow-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .glow-button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    animation: glowing 1.5s infinite;
+  }
+  
+  /* Optional: Adjust the glow color and size as needed */
+  .glow-button:hover {
+    box-shadow: 0 0 10px #3498db, 0 0 20px #3498db, 0 0 30px #3498db;
+  }
+
+  .glow-image {
+    animation: glowing 1.5s infinite;
+  }
+  

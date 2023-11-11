@@ -111,7 +111,7 @@ function AddImage() {
                   <span>User Name-- </span>{currentUser?.displayName}
                 </Typography>
                 <Typography variant="h6" color="white" className="mb-4 flex gap-10">
-                  <span className='uppercase'>User email-- </span>{currentUser?.email}
+                  <span className='uppercase'>User email-- </span>{currentUser?.email || currentUser?.phoneNumber}
                 </Typography>
 
                 <Typography variant="h4" color="black" className="mb-2 uppercase mt-10">
