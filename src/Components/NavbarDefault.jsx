@@ -58,7 +58,7 @@ function NavbarDefault() {
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src={currentUser?.photoURL || photo} alt='userphoto' className={`${location.pathname==="/profile"? 'bg-white p-4 glow-image':' '}`} />
+                <img src={currentUser?.photoURL || photo} alt='userphoto' className={`${location.pathname==="/profile"? 'glow-image':' '}`} />
               </div>
             </label>
             <ul tabIndex={0} className="mt-2 gap-3 z-[1] p-4 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-60">
