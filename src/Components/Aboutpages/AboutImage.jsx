@@ -61,8 +61,8 @@ function AboutImage() {
                       <motion.img initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} src={image.imageUrL} alt={image.title} className="custom-box-shadow h-[300px] w-[300px] md:h-[600px] md:w-[600px] sm:h-60 xl:h-96 rounded-3xl md:mx-4 p-1" />
                     </div>
                     <div className="flex flex-col justify-center mt-5 ml-4 lg:ml-20">
-                      <p className="text-2xl lg:text-4xl md:text-3xl tracking-wider text-[#ca8a04] font-bold capitalize p-3">{image.title}</p>
-                      <p className="mt-5 text-xl tracking-wider leading-snug font-semibold">
+                      <p className="text-2xl lg:text-4xl md:text-3xl tracking-wider text-[#ca8a04] font-bold capitalize p-3 font-serif">{image.title}</p>
+                      <p className="mt-5 text-xl tracking-wider leading-snug font-mono font-semibold">
                         {image.description}
                       </p>
                     </div>

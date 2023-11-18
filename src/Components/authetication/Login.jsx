@@ -149,7 +149,7 @@ export default function Login() {
             <form className="card-body" onSubmit={handleSubmit}>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-black">Email</span>
+                  <span className="label-text text-black font-extrabold font-serif">Email</span>
                 </label>
                 <input
                   type="email"
@@ -162,7 +162,7 @@ export default function Login() {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-black">Password</span>
+                  <span className="label-text text-black font-extrabold font-serif">Password</span>
                 </label>
                 <input
                   type="password"
@@ -173,7 +173,7 @@ export default function Login() {
                   required
                 />
                 <label className="label mt-2">
-                  <p onClick={handleResetPassword} className="label-text-alt link link-hover hover:text-blue-600 text-black">Forgot password?</p>
+                  <p onClick={handleResetPassword} className="label-text-alt font-medium text-[14px] link link-hover hover:text-blue-600 text-black">Forgot password?</p>
                 </label>
                 <p className="m-2 text-black">Don't have an account?{" "}
                   <Link to="/register" className="font-medium text-blue-900">
@@ -182,7 +182,7 @@ export default function Login() {
                 </p>
               </div>
               <div className="form-control">
-                <button className="btn btn-primary bg-blue-600 rounded-3xl mt-1 hover:bg-blue-900 text-white uppercase">Login</button>
+                <button className="btn btn-primary bg-blue-600 rounded-3xl mt-1 hover:bg-blue-900 text-white uppercase font-bold">Login</button>
               </div>
             </form>
             <div className="">

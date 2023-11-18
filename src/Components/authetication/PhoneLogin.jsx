@@ -85,7 +85,7 @@ const PhoneLogin = () => {
           <form onClick={getOtp} className="card-body" style={{ display: !flag ? 'block' : 'none' }}>
             <div className="form-control">
               <label className="label">
-                <span className="label-text text-black">Phone number</span>
+                <span className="label-text text-black font-extrabold font-serif">Phone number</span>
               </label>
               <PhoneInput
                 defaultCountry="IN"
@@ -98,7 +98,7 @@ const PhoneLogin = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text text-black">Display Name</span>
+                <span className="label-text text-black font-extrabold font-serif">Display Name</span>
               </label>
               <input
                 type="text"
@@ -112,7 +112,7 @@ const PhoneLogin = () => {
             
             <div id="recaptcha-container" />
             <div className="form-control mt-8">
-              <button className="btn btn-primary rounded-3xl bg-blue-500 hover-bg-blue-700 text-white uppercase">
+              <button className="btn btn-primary rounded-3xl bg-blue-500 hover-bg-blue-700 text-white uppercase font-bold">
                 Send OTP
               </button>
             </div>
@@ -123,12 +123,12 @@ const PhoneLogin = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text text-black">Enter OTP</span>
+                <span className="label-text text-black font-extrabold font-serif">Enter OTP</span>
               </label>
               <input type="number" placeholder="Enter OTP....." onChange={(e) => setOtp(e.target.value)} />
             </div>
             <div className="form-control mt-8">
-              <button className="btn btn-primary rounded-3xl bg-blue-500 hover-bg-blue-700 text-white uppercase">
+              <button className="btn btn-primary rounded-3xl bg-blue-500 hover-bg-blue-700 text-white uppercase font-bold">
                 Verify OTP
               </button>
             </div>

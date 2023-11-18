@@ -74,19 +74,19 @@ export default function Register() {
         <form className="card-body" onSubmit={handleSubmit}>
             <div className="form-control">
                 <label className="label">
-                <span className="label-text text-black capitalize">User Name</span>
+                <span className="label-text text-black capitalize font-extrabold font-serif">User Name</span>
                 </label>
                 <input type="text" placeholder="Enter your name ..." className="input bg-white text-black input-bordered bg-opacity-75" required />
             </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-black">Email</span>
+              <span className="label-text text-black font-extrabold font-serif">Email</span>
             </label>
             <input type="email" placeholder="email" className="input bg-white input-bordered text-black bg-opacity-75" required />
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-black">Password</span>
+              <span className="label-text text-black font-extrabold font-serif">Password</span>
             </label>
             <input type="password" placeholder="password" className="input input-bordered bg-white text-black bg-opacity-75" required />
           </div>
@@ -101,8 +101,8 @@ export default function Register() {
                 login
               </Link>
             </p>
-          <div className="form-control mt-6">
-            <button disabled={loading} className="btn btn-primary rounded-3xl bg-blue-500 hover:bg-blue-700 text-white uppercase">Register</button>
+          <div className="form-control mt-5">
+            <button disabled={loading} className="btn btn-primary rounded-3xl bg-blue-500 hover:bg-blue-700 text-white uppercase font-bold">Register</button>
           </div>
           <p className="text-blue-800">{loading && "Uploading and compressing the image please wait..."}</p>
           <p className="text-red-600">{err && <span>Email Already exists...</span>}</p>

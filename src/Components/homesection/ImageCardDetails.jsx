@@ -54,13 +54,15 @@ function ImageCardDetails() {
                 <motion.img initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} src={photo.url} alt={photo.title} className="custom-box-shadow cursor-pointer sm:h-60 xl:h-96 rounded-3xl md:mx-4 p-1 md:h-[600px] md:w-[600px]" />
               </div>
               <div className="flex flex-col justify-center mt-5 md:ml-4 lg:ml-20">
-                <p className="text-2xl font-bold lg:text-4xl text-yellow-600 md:text-white md:text-3xl tracking-wider md:p-3">{photo.title}</p>
-                <p className="mt-5 text-xl tracking-wider leading-snug font-semibold">
+                <p className="text-2xl font-bold font-serif lg:text-4xl text-yellow-600 md:text-white md:text-3xl tracking-wider md:p-3">{photo.title}</p>
+                <p className="mt-5 text-xl tracking-wider leading-snug font-mono font-semibold">
                   {photo.description}
                 </p>
-                <button onClick={handleDownload} className="px-4 py-3 mt-5 bg-blue-600 hover:bg-black rounded">
-                  Download Image
-                </button>
+                <div className="flex items-center justify-center">
+                  <button onClick={handleDownload} className="w-1/2 rounded-lg px-4 py-3 mt-5 bg-blue-600 hover:bg-black">
+                    Download Image
+                  </button>
+                </div>
               </div>
             </div>
           </div>
