@@ -6,8 +6,8 @@ import { db, storage } from '../../firebase/config'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { addDoc, collection } from 'firebase/firestore'
 import {toast} from 'react-toastify';
+import {motion} from 'framer-motion'
 import 'react-toastify/dist/ReactToastify.css';
-
 import {
   Card,
   CardHeader,
@@ -17,6 +17,7 @@ import {
 } from "@material-tailwind/react";
 import photo from '../../assets/photo.jpg'
 import { Link } from 'react-router-dom'
+import { fadeIn } from '../../Variants'
 
 function AddImage() {
   const [file,setFile]=useState(null)
@@ -33,6 +34,13 @@ function AddImage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!file || !title || !description) {
+      setErr(true);
+      toast.error("Please fill in all fields and select a file.");
+      return;
+    }
+
     setUpload(true)
     if (file) {
       const fileId = currentUser?.uid;
@@ -54,7 +62,7 @@ function AddImage() {
           toast.success("Photo added succesfully");
 
           await addDoc(collection(db,"userPhotos"),{
-            uid:fileId,
+            uploaderid:fileId,
             imageUrL:downloadURL,
             createdAt:new Date(),
             contact:currentUser?.email || currentUser?.phoneNumber,
@@ -77,23 +85,27 @@ function AddImage() {
       <NavbarDefault/>
       <div className='text-center mt-10'>
         <form className='flex items-center flex-col gap-10'>
-          <div className='flex gap-5'>
+          <motion.div variants={fadeIn("right",0.3)} initial="hidden" whileInView={"show"} viewport={{once:false,amount:0.3}} className='flex gap-5'>
             <label className='font-bold'>Image Title</label>
             <input type="text" placeholder="Type here" className="input input-bordered input-info w-full max-w-xs" required value={title} onChange={(e) => setTitle(e.target.value)} />
-          </div>
-          <div className='flex gap-5'>
+          </motion.div>
+          <motion.div variants={fadeIn("right",0.3)} initial="hidden" whileInView={"show"} viewport={{once:false,amount:0.3}} className='flex gap-5'>
             <label className='font-bold'>Image Description</label>
             <input type="text" placeholder="Type here" className="input input-bordered input-info w-full max-w-xs" required value={description} onChange={(e) => setDescription(e.target.value)} />
-          </div>
-          <input type="file" accept="image/*" id="profile-photo" className="file-input file-input-bordered file-input-info w-full max-w-xs" onChange={(e) => setFile(e.target.files[0])} />
-          <button onClick={handleSubmit} className='btn mt-5 bg-blue-600 hover:bg-blue-800 text-white font-bold font-serif capitalize p-4 rounded-2xl gap-10'>Upload 🚀</button>
+          </motion.div>
+          <motion.div variants={fadeIn("right",0.3)} initial="hidden" whileInView={"show"} viewport={{once:false,amount:0.3}} className='flex gap-5'>
+            <input type="file" accept="image/*" id="profile-photo" className="file-input file-input-bordered file-input-info w-full max-w-xs" onChange={(e) => setFile(e.target.files[0])} />
+          </motion.div>
+          <motion.div variants={fadeIn("up",0.4)} initial="hidden" whileInView={"show"} viewport={{once:false,amount:0.3}} className='flex gap-5'>
+            <button onClick={handleSubmit} className='btn mt-5 bg-blue-600 hover:bg-blue-800 text-white font-bold font-serif capitalize p-4 rounded-2xl gap-10'>Upload 🚀</button>
+          </motion.div>
         </form>
         
         {progress > 0 && progress < 100 && (
           <progress className="progress progress-error w-56" value={progress} max="100"></progress>
         )}        
         {upload && progress === 100  &&
-          <div>
+          <motion.div variants={fadeIn("down",0.4)} initial="hidden" whileInView={"show"} viewport={{once:false,amount:0.3}} className='flex items-center justify-center mt-8'>
             <Card className="w-full max-w-[48rem] flex-row p-4 mt-10 bg-blue-400 mt">
               <CardHeader
                 shadow={true}
@@ -103,10 +115,10 @@ function AddImage() {
                 <img
                   src={url}
                   alt="/not found"
-                  className="object-cover h-[400px] w-[400px]"
+                  className="object-cover w-fit h-full md:h-[400px] md:w-[400px] rounded-lg"
                 />
               </CardHeader>
-              <CardBody className="px-4 gap-10 w-3/5">
+              <CardBody className="px-6 gap-10 w-3/5">
                 <Typography variant="h6" color="white" className="mb-4 uppercase flex gap-10">
                   <span>User Name-- </span>{currentUser?.displayName}
                 </Typography>
@@ -141,9 +153,9 @@ function AddImage() {
                 </Link>
               </CardBody>
             </Card> 
-          </div>
+          </motion.div>
         }
-        {err && <span>some thing went wrong</span>}
+        {err && <span className='text-xl text-red-600'></span>}
         </div>
       </div>
     
