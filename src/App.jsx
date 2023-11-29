@@ -13,6 +13,9 @@ import About from "./Components/Aboutpages/About";
 import VerifyingEmail from "./Components/authetication/VerifyingEmail";
 import { ToastContainer } from "react-toastify";
 import AboutImage from "./Components/Aboutpages/AboutImage";
+import SelectedCards from "./Components/addedimages/SelectedCards";
+import UpdateImage from "./Components/Aboutpages/UpdateImage";
+
 
 export default function App() {
   const { currentUser } = useContext(AuthContext);
@@ -36,11 +39,14 @@ export default function App() {
         <Route path="/profile/:name" element={<ProtectedRoute><AboutImage/></ProtectedRoute>} />
         <Route path="/addedphotos" element={<ProtectedRoute><ImagesAdded/></ProtectedRoute>} />
         <Route path="/addedphotos/:id" element={<ProtectedRoute><ImagesAdded/></ProtectedRoute>} />
+        <Route path="/addedphotos/filter/:address" element={<ProtectedRoute><SelectedCards/></ProtectedRoute>}/>
+        <Route path="/addedphotos/filter/:address/:id" element={<ProtectedRoute><SelectedCards/></ProtectedRoute>}/>
         <Route path="/register" element={<Register/>} />
         <Route path="/phonelogin" element={<PhoneLogin/>} />
         <Route path="/reset" element={<ResetPassword/>} />
         <Route path='/verifypage' element={<VerifyingEmail/>}/>
         <Route path="/yourImage" element={<AboutImage/>}/>
+        <Route path="/profile/update/:name" element={<ProtectedRoute><UpdateImage/></ProtectedRoute>}/>
       </Routes>
       <ToastContainer position="top-right" bodyClassName="text-center font-bold text-blue-900"/>
     </div>

@@ -39,7 +39,6 @@ const About = () => {
                     setImages(imageList);
                     setLoading(false);
                 });
-
                 return unsub;
             } catch (error) {
                 console.error(error);
@@ -103,7 +102,7 @@ const About = () => {
                 <div className='bg-gradient-to-r from-[#dbcdda] to-[#5961f9] rounded-xl rounded-br-80px md:p-9 px-4 py-9'>
                     <div className='flex flex-col md:flex-row justify-between items-center gap-10'>
                         <motion.div variants={fadeIn("right",0.4)} initial="hidden" whileInView={"show"} viewport={{once:false,amount:0.3}} onClick={toggleEnlargedView}>
-                            <img src={currentUser?.photoURL || photo} alt='img' className='lg:h-[400px] lg:w-[400px] rounded-full cursor-pointer' />
+                            <img src={currentUser?.photoURL || photo} alt='img' className='lg:h-[400px] lg:w-[400px] lg:rounded-full h-[200px] w-[200px] rounded bg-gradient-to-r from-[#4338ca] to-[#fbbf24] p-2 cursor-pointer' />
                         </motion.div>
                         <motion.div variants={fadeIn("down",0.2)} initial="hidden" whileInView={"show"} viewport={{once:false,amount:0.3}} className='md:w-3/5 '>
                             <h2 className='md:text-4xl text-xl font-semibold text-[#09090b] mb-6 leading-relaxed'>{currentUser?.email || currentUser?.phoneNumber}</h2>
@@ -146,7 +145,7 @@ const About = () => {
                                                 <Link to={`/profile/${image.title}`}>
                                                     <motion.div variants={fadeIn("right",0.3)} initial="hidden" whileInView={"show"} viewport={{once:false,amount:0.3}} className="group relative hover:scale-110 ease-out duration-300 flex items-center justify-center">
                                                         <div>
-                                                            <img src={image.imageUrL} alt={image.title} className="rounded-3xl h-[400px] w-[400px] md:h-[500px] md:w-[500px] px-4 gap-4" />
+                                                            <img src={image.imageUrL} alt={image.title} className="rounded-3xl h-[300px] w-[300px] md:h-[500px] md:w-[700px] px-4 gap-4" />
                                                         </div>
                                                         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-white">
                                                             <h3 className="text-2xl font-medium mb-2">{image.title}</h3>

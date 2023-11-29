@@ -36,7 +36,7 @@ function ResetPassword() {
           <form className="card-body" onSubmit={(e)=>handleSubmit(e)}>
             <div className="form-control">
                 <label className="label">
-                <span className="label-text text-black">Enter new password</span>
+                <span className="label-text text-black font-bold">Enter Reset Email</span>
                 </label>
                 <input type="email" name="email" placeholder="Enter your email ...." className="input input-bordered bg-white text-black bg-opacity-75" required />
             </div>

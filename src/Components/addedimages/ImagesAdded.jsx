@@ -43,7 +43,7 @@ const ImagesAdded = () => {
   }, []);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const perPage = 11;
+  const perPage = 8;
   const totalPages = Math.ceil(images?.length / perPage);
   const navigate = useNavigate();
 
@@ -95,9 +95,9 @@ const ImagesAdded = () => {
         <div>
           <div className='flex items-center justify-center text-3xl font-bold mb-10'>Uploaded Images</div>
           <div className='flex items-center justify-center mb-4 md:absolute md:right-3 md:top-32'>
-                  <Link to="/upload">
-                    <button className='p-3 font-bold flex gap-2 text-xl rounded-full bg-gradient-to-r from-[#6d28d9] to-[#5961f9]'>Add image <AiOutlineArrowRight color='white' size={25} /></button>
-                  </Link>
+              <Link to="/upload">
+                <button className='p-3 font-bold flex gap-2 text-xl rounded-full bg-gradient-to-r from-[#6d28d9] to-[#5961f9]'>Add image <AiOutlineArrowRight color='white' size={25} /></button>
+              </Link>
             </div>
           <div className='grid gap-10 lg:grid-cols-3 md:grid-cols-2 md:mx-8' {...swipeHandlers}>
             {currentProducts && currentProducts.map((image, index) => (

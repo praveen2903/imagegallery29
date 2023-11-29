@@ -15,7 +15,7 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-import photo from '../../assets/photo.jpg'
+import photo from '../../assets/iron.jpeg'
 import { Link } from 'react-router-dom'
 import { fadeIn } from '../../Variants'
 
@@ -34,7 +34,6 @@ function AddImage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!file || !title || !description) {
       setErr(true);
       toast.error("Please fill in all fields and select a file.");
@@ -74,10 +73,12 @@ function AddImage() {
           })
         })
       });
-
     } else {
       setFile(null);
     }
+    setTitle('')
+    setDescription('')
+    setFile(null)
   };
 
   return (
@@ -87,11 +88,18 @@ function AddImage() {
         <form className='flex items-center flex-col gap-10'>
           <motion.div variants={fadeIn("right",0.3)} initial="hidden" whileInView={"show"} viewport={{once:false,amount:0.3}} className='flex gap-5'>
             <label className='font-bold'>Image Title</label>
-            <input type="text" placeholder="Type here" className="input input-bordered input-info w-full max-w-xs" required value={title} onChange={(e) => setTitle(e.target.value)} />
+            <input type="text" placeholder="Enter Title" className="input input-bordered input-info w-full max-w-xs" required value={title} onChange={(e) => setTitle(e.target.value)} />
           </motion.div>
           <motion.div variants={fadeIn("right",0.3)} initial="hidden" whileInView={"show"} viewport={{once:false,amount:0.3}} className='flex gap-5'>
             <label className='font-bold'>Image Description</label>
-            <input type="text" placeholder="Type here" className="input input-bordered input-info w-full max-w-xs" required value={description} onChange={(e) => setDescription(e.target.value)} />
+            <textarea
+                  className="input input-bordered input-info w-full"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  placeholder="Enter description"
+                  rows={4}
+                  required
+                />
           </motion.div>
           <motion.div variants={fadeIn("right",0.3)} initial="hidden" whileInView={"show"} viewport={{once:false,amount:0.3}} className='flex gap-5'>
             <input type="file" accept="image/*" id="profile-photo" className="file-input file-input-bordered file-input-info w-full max-w-xs" onChange={(e) => setFile(e.target.files[0])} />

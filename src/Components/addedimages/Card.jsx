@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Card({ photoUrL, userphoto, name, title, description, address, onImageClick }) {
   const handleImageClick = () => {
@@ -7,12 +8,12 @@ function Card({ photoUrL, userphoto, name, title, description, address, onImageC
 
   return (
     <div className='custom-box-shadow h-full rounded-3xl xl:mx-4 p-1'>
-      <div className="card w-96 bg-base-100 shadow-xl">
+      <div className="card w-96 bg-base-100 shadow-xl p-3">
         <figure>
           <img
             src={photoUrL}
             alt="/"
-            className='h-[200px] w-[200px] cursor-pointer'
+            className='h-[300px] w-[300px] cursor-pointer rounded-lg'
             onClick={handleImageClick}
           />
         </figure>
@@ -22,10 +23,10 @@ function Card({ photoUrL, userphoto, name, title, description, address, onImageC
             {name}
           </h2>
           <p className='text-center font-semibold m-3 text-xl'>{title}</p>
-          <p className='font-serif'>{description}</p>
-          <div className="card-actions justify-end m-2">
-            <div className="badge badge-outline rounded-full bg-[#38bdf8] text-white text-[15px] p-3 font-mono">{address}</div>
-          </div>
+          <p className='font-serif text-justify font-light'>{description}</p>
+        </div>
+        <div className="card-actions justify-end mb-3">
+          <Link to={`/addedphotos/filter/${address}`} className="badge badge-outline rounded-full bg-[#38bdf8] text-white text-[15px] p-4 font-mono">{address}</Link>
         </div>
       </div>
     </div>
