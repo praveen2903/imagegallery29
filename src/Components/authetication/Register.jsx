@@ -97,7 +97,7 @@ export default function Register() {
             <input type="file" accept="image/*" id="profile-photo" className="file-input file-input-bordered file-input-sm w-full max-w-xs mt-2" onChange={(e) => setFile(e.target.files[0])} />
           </div>
             <p className="mt-2 text-black">Already have an account?{" "}
-              <Link to="/" className="font-medium text-blue-700">
+              <Link to="/login" className="font-medium text-blue-700">
                 login
               </Link>
             </p>

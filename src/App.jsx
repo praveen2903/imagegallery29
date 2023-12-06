@@ -15,6 +15,7 @@ import { ToastContainer } from "react-toastify";
 import AboutImage from "./Components/Aboutpages/AboutImage";
 import SelectedCards from "./Components/addedimages/SelectedCards";
 import UpdateImage from "./Components/Aboutpages/UpdateImage";
+import HeroPage from "./Components/HeroPage";
 
 
 export default function App() {
@@ -31,10 +32,11 @@ export default function App() {
   return (
     <div>
       <Routes>
+        <Route path="/" element={<HeroPage/>}/>
         <Route path="/home" element={<ProtectedRoute><ImageCards/></ProtectedRoute>}/>
         <Route path="/detailPage/:id" element={<ProtectedRoute><ImageCardDetails/></ProtectedRoute>}/>
         <Route path="/upload" element={<ProtectedRoute><AddImage/></ProtectedRoute>} />
-        <Route path="/" element={<Login/>} />
+        <Route path="/login" element={<Login/>} />
         <Route path="/profile" element={<ProtectedRoute><About/></ProtectedRoute>} />
         <Route path="/profile/:name" element={<ProtectedRoute><AboutImage/></ProtectedRoute>} />
         <Route path="/addedphotos" element={<ProtectedRoute><ImagesAdded/></ProtectedRoute>} />
