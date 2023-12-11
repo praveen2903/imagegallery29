@@ -16,6 +16,7 @@ import AboutImage from "./Components/Aboutpages/AboutImage";
 import SelectedCards from "./Components/addedimages/SelectedCards";
 import UpdateImage from "./Components/Aboutpages/UpdateImage";
 import HeroPage from "./Components/HeroPage";
+import ContactPage from "./Components/ContactPage";
 
 
 export default function App() {
@@ -33,6 +34,7 @@ export default function App() {
     <div>
       <Routes>
         <Route path="/" element={<HeroPage/>}/>
+        <Route path="/contact" element={<ContactPage/>}/>
         <Route path="/home" element={<ProtectedRoute><ImageCards/></ProtectedRoute>}/>
         <Route path="/detailPage/:id" element={<ProtectedRoute><ImageCardDetails/></ProtectedRoute>}/>
         <Route path="/upload" element={<ProtectedRoute><AddImage/></ProtectedRoute>} />
