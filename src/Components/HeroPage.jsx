@@ -13,9 +13,9 @@ const HeroPage = () => {
   return (
     <div>
         <div className="hero min-h-screen" style={{backgroundImage: 'url(https://media.istockphoto.com/id/1145422105/photo/eiffel-tower-aerial-view-paris.jpg?s=612x612&w=0&k=20&c=sFn6FwTJR0TpX3rP_W4VHrbkTB__6l5kr-lkkqdYrtE=)'}}>
-          <div className='absolute right-3 top-3 mt-5'>
+          <motion.div variants={fadeIn("left",0.4)} initial="hidden" whileInView={"show"} viewport={{once:false,amount:0.3}} className='absolute right-3 top-3 mt-5'>
             <Link to="/contact" className='bg-[#ea580c] text-xl text-white p-3 rounded-lg font-semibold font-mono flex gap-4 hover:bg-[#dc2626]'>Contact<MdContactPage size={25}/></Link>
-          </div>
+          </motion.div>
             <div className="hero-overlay bg-opacity-60"></div>
             <motion.div variants={fadeIn("right",0.4)} initial="hidden" whileInView={"show"} viewport={{once:false,amount:0.3}} className="hero-content text-center text-neutral-content">
                 <div className="max-w-md">
