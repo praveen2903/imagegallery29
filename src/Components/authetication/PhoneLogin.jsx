@@ -22,7 +22,9 @@ const PhoneLogin = () => {
   const setUpRecaptcha = (number) => {
     const recaptcha = new RecaptchaVerifier(auth, 'recaptcha-container', {});
     recaptcha.render();
-    return signInWithPhoneNumber(auth, number, recaptcha);
+    const confirm= signInWithPhoneNumber(auth, number, recaptcha);
+    console.log(confirm);
+    return confirm;
   };
 
   const getOtp = async (e) => {
