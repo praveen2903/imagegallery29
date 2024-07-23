@@ -9,6 +9,7 @@ import { RecaptchaVerifier, signInWithPhoneNumber, updateProfile } from 'firebas
 import { auth, db } from '../../firebase/config';
 import { doc, setDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
+import OTPInput from 'react-otp-input';
 
 const PhoneLogin = () => {
   const [number, setNumber] = useState('');
@@ -69,6 +70,8 @@ const PhoneLogin = () => {
     }
   };
 
+  const renderInput = (props) => <input {...props} />;
+
   return (
     <div className="hero min-h-screen bg-base-200" style={{ backgroundImage: `url(${img})` }}>
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -127,8 +130,30 @@ const PhoneLogin = () => {
               <label className="label">
                 <span className="label-text text-black font-extrabold font-serif">Enter OTP</span>
               </label>
-              <input type="number" placeholder="Enter OTP....." onChange={(e) => setOtp(e.target.value)} />
-            </div>
+              <OTPInput
+                    value={otp}
+                    onChange={setOtp}
+                    numInputs={6}
+                    separator={<span style={{ width: "8px" }}></span>}
+                    isInputNum={true}
+                    shouldAutoFocus={true}
+                    renderInput={renderInput}
+                    inputStyle={{
+                      border: "1px solid transparent",
+                      borderRadius: "8px",
+                      width: "54px",
+                      height: "54px",
+                      fontSize: "12px",
+                      color: "#000",
+                      fontWeight: "400",
+                      caretColor: "blue"
+                    }}
+                    focusStyle={{
+                      border: "1px solid #CFD3DB",
+                      outline: "none"
+                    }}
+                />            
+              </div>
             <div className="form-control mt-8">
               <button className="btn btn-primary rounded-3xl bg-blue-500 hover-bg-blue-700 text-white uppercase font-bold">
                 Verify OTP
