@@ -143,7 +143,7 @@ const PhoneLogin = () => {
                       borderRadius: "8px",
                       width: "54px",
                       height: "54px",
-                      fontSize: "12px",
+                      fontSize: "16px",
                       color: "#000",
                       fontWeight: "400",
                       caretColor: "blue"
